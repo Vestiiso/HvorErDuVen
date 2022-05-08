@@ -1,8 +1,8 @@
 package com.example.hvorerduven;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 
 public class hovedsiden extends AppCompatActivity {
 
