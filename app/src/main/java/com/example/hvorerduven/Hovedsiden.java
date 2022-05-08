@@ -1,10 +1,10 @@
 package com.example.hvorerduven;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class hovedsiden extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class Hovedsiden extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
