@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Hovedsiden extends AppCompatActivity {
 
+    //tester 123
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
