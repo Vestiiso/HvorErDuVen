@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HvorErDuVen">
         <activity
-            android:name=".hovedsiden"
+            android:name=".Hovedsiden"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
