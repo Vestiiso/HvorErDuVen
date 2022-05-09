@@ -9,10 +9,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:background="@android:color/darker_gray"
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#B5F2F7"
+        android:padding="10dp"
 
         android:scrollbars="vertical" />
 
