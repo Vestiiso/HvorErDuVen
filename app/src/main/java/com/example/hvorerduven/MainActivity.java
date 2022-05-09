@@ -1,6 +1,7 @@
 package com.example.hvorerduven;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText number, message;
     private Button send;
+    private Button testHovedsiden;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         number = findViewById(R.id.number);
         message = findViewById(R.id.message);
         send = findViewById(R.id.send);
+        testHovedsiden = (Button) findViewById(R.id.testHovedsiden);
+
+        testHovedsiden.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openHovedsiden();
+            }
+        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void openHovedsiden() {
+        Intent hovedsidenIntent = new Intent(this, Hovedsiden.class);
+        startActivity(hovedsidenIntent);
+    }
+
+
     private void sendSMS() {
         String phoneNo = number.getText().toString().trim();
         String SMS = message.getText().toString().trim();

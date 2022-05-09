@@ -32,6 +32,12 @@
         android:text="Send"
         android:layout_gravity="center_horizontal"/>
 
+    <Button
+        android:id="@+id/testHovedsiden"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Test Hovedsiden" />
 
 
 </LinearLayout>
