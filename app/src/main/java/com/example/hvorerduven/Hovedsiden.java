@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Hovedsiden extends AppCompatActivity {
 
-    //tester 123
+    //tester 123456
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
