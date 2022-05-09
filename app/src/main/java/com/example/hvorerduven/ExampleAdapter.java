@@ -48,11 +48,10 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         holder.mImageView.setImageResource(currentItem.getmImageResource()); //tager billedressourcen fra vores item og sætter den ind i holders imageview
         holder.mTextview1.setText(currentItem.getmText1());
         holder.mTextview2.setText(currentItem.getmText2());
-
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getItemCount() { //definerer hvor mange items der er i vores liste
+        return mExampleList.size();
     }
 }

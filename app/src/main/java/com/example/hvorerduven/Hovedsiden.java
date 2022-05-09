@@ -3,6 +3,7 @@ package com.example.hvorerduven;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,7 +20,17 @@ public class Hovedsiden extends AppCompatActivity {
 
         ArrayList<ExampleItem> exampleList = new ArrayList<>();
         exampleList.add(new ExampleItem(R.drawable.ic_alarm, "linje 1", "linje 2"));
-        exampleList.add(new ExampleItem(R.drawable.ic_android, "linje 1.1", "linje 2.2"));
+        exampleList.add(new ExampleItem(R.drawable.ic_android, "linje 1.1", "linje 2.1"));
         exampleList.add(new ExampleItem(R.drawable.ic_baseline, "linje 1.2", "linje 2.2"));
+
+        //listen bliver givet til vores adapter, som giver den til vores viewholder
+        mRecyclerView = findViewById(R.id.recyclerView);
+        //mRecyclerView.setHasFixedSize(true); //hvis vi ved at listen ikke ændrer størrelse, kan denne linje optimere performance
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ExampleAdapter(exampleList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 }

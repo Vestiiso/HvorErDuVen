@@ -2,15 +2,26 @@
 
 <!--dette dokument specificere hvordan vores cardlayput skal se ud og hvordan vores cards skal se ud -->
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/teal_700"
+    android:padding="50dp"
+    app:cardBackgroundColor="#B1FDE7"
+
+    app:cardCornerRadius="20dp"
+    app:cardElevation="5dp"
+    app:contentPadding="10dp"
+    android:layout_marginBottom="6dp"
+
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:animateLayoutChanges="false"
+        android:background="#0054E1B0">
 
         <ImageView
             android:id="@+id/imageView"
@@ -34,12 +45,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textView"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/imageView"
             android:text="line 2"
-            android:textSize="15sp"
-            android:layout_marginStart="8dp"/>
+            android:textSize="15sp" />
 
 
-        </RelativeLayout>
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

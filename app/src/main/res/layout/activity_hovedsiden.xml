@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Hovedsiden">
+    tools:context=".Hovedsiden"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android.background="@android:color/darker_gray"
-        android.padding="4dp"
+        android:background="@android:color/darker_gray"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
