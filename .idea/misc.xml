@@ -3,6 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/backbotton.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/right_arrow.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundback_logout.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundback_secondary100.xml" value="0.113" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundbackadmin.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundbacknotifiation.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundbacksecurity.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundbackwhite.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_hovedsiden.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.16" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_main.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_settings.xml" value="0.264" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/hovedsiden_item.xml" value="0.20364583333333333" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen/app/src/main/res/layout/activity_hovedsiden.xml" value="0.1" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.393" />
