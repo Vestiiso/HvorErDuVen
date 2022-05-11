@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "596193951882",
+    "firebase_url": "https://hvor-er-du-ven-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hvor-er-du-ven",
+    "storage_bucket": "hvor-er-du-ven.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:596193951882:android:e82c6b7ca325f7ed68ad73",
+        "android_client_info": {
+          "package_name": "com.example.hvorerduven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "596193951882-jnt258jfuvcljkbqpu3i9rih41hgha2k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtb1TWQ3v8J41LY9TNSjSAsX6GQRzxets"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "596193951882-jnt258jfuvcljkbqpu3i9rih41hgha2k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
