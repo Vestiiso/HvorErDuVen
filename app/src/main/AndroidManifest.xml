@@ -15,6 +15,9 @@
             android:name=".SendSMS"
             android:exported="false" />
         <activity
+            android:name=".Settings"
+            android:exported="false" />
+        <activity
             android:name=".LoginScreenJoakim"
             android:exported="false" />
         <activity

@@ -15,6 +15,7 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
         Logout = (Button) findViewById(R.id.logout);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
