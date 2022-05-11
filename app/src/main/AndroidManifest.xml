@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HvorErDuVen">
         <activity
+            android:name=".SendSMS"
+            android:exported="false" />
+        <activity
             android:name=".LoginScreenJoakim"
             android:exported="false" />
         <activity
