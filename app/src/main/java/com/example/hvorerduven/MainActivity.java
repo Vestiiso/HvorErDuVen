@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     private Button testHovedsiden;
     private Button testSendSMS;
     private Button testSettings;
+    private Button testLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         testHovedsiden = (Button) findViewById(R.id.testHovedsiden);
         testSendSMS = (Button) findViewById(R.id.testSendSMS);
         testSettings = (Button) findViewById(R.id.testSettings);
+        testLogin = (Button) findViewById(R.id.testLogin);
 
         testHovedsiden.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        testLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLogin();
+            }
+        });
+
 
     }
 
@@ -60,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
         Intent SettingsIntent = new Intent(this, Settings.class);
         startActivity(SettingsIntent);
     }
+
+    public void openLogin() {
+        Intent LoginIntent = new Intent(this, LoginScreenJoakim.class);
+        startActivity(LoginIntent);
+    }
+
 
 }
 
