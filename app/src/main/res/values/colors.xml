@@ -13,11 +13,11 @@
     <color name="end_color">#5ad8e8</color>
 
     <color name="primary">#1B023B</color>
-    <color name="secondary">#FF03DAC5</color>
+    <color name="secondary">#2196F3</color>
 
-    <color name="notifications">#13B2C3</color>
-    <color name="admin_account">#E6A326</color>
-    <color name="security">#D95F69</color>
-    <color name="logout">#000000</color>
+    <color name="notifications">#43D4E4</color>
+    <color name="admin_account">#ECB144</color>
+    <color name="security">#F84956</color>
+    <color name="logout">#272020</color>
 
 </resources>
