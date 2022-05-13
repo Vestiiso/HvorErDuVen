@@ -46,23 +46,23 @@ public class LoginScreenJoakim extends AppCompatActivity {
         // Create a Cloud Storage reference from the app
     //    StorageReference storageRef = storage.getReference();
         // Create a reference to "mountains.jpg"
-    //    StorageReference mountainsRef = storageRef.child("mountains.jpg");
+      //  StorageReference mountainsRef = storageRef.child("mountains.jpg");
 
 // Create a reference to 'images/mountains.jpg'
- //       StorageReference mountainImagesRef = storageRef.child("images/mountains.jpg");
+        //StorageReference mountainImagesRef = storageRef.child("images/mountains.jpg");
 
 // While the file names are the same, the references point to different files
-  //      mountainsRef.getName().equals(mountainImagesRef.getName());    // true
-  //      mountainsRef.getPath().equals(mountainImagesRef.getPath());    // false
+       // mountainsRef.getName().equals(mountainImagesRef.getName());    // true
+        //mountainsRef.getPath().equals(mountainImagesRef.getPath());    // false
 
         // Create a reference with an initial file path and name
-    //    StorageReference pathReference = storageRef.child("images/stars.jpg");
+       // StorageReference pathReference = storageRef.child("images/stars.jpg");
 
 // Create a reference to a file from a Cloud Storage URI
-   //     StorageReference gsReference = storage.getReferenceFromUrl("gs://bucket/images/stars.jpg");
+       // StorageReference gsReference = storage.getReferenceFromUrl("gs://bucket/images/stars.jpg");
 
 // Create a reference from an HTTPS URL
 // Note that in the URL, characters are URL escaped!
-   //     StorageReference httpsReference = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg");
+     //   StorageReference httpsReference = storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/b/bucket/o/images%20stars.jpg");
     }
 }

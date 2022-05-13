@@ -56,7 +56,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="60dp"
-        android:background="@drawable/edt_background"
+        android:background="#00000000"
         android:text="login"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
