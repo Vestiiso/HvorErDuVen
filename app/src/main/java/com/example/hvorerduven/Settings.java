@@ -42,7 +42,7 @@ public class Settings extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Settings.this,ExampleAdapter.class));
+                startActivity(new Intent(Settings.this,MainActivity.class));
             }
         });
     }
