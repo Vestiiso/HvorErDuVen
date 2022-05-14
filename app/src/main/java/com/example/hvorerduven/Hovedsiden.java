@@ -1,6 +1,7 @@
 package com.example.hvorerduven;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,6 +35,32 @@ public class Hovedsiden extends AppCompatActivity {
         buttonRemove = findViewById(R.id.button_remove);
         editTextInsert = findViewById(R.id.edittext_insert);
         editTextRemove = findViewById(R.id.edittext_remove);
+
+        buttonInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(editTextInsert.getText().toString());
+                insertItem(position);
+            }
+        });
+
+        buttonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(editTextRemove.getText().toString());
+                removeItem(position);
+            }
+        });
+    }
+
+    public void insertItem(int position) {
+        mCardList.add(position-1, new Card("Her skal kortets navn indsættes") );
+        mAdapter.notifyItemInserted(position);
+    }
+
+    public void removeItem(int position) {
+        mCardList.remove(position-1);
+        mAdapter.notifyItemRemoved(position);
 
     }
 
