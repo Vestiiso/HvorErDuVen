@@ -41,13 +41,22 @@ public class LoginScreenJoakim extends AppCompatActivity {
             }
         });
 
+        MaterialButton opretButton = (MaterialButton) findViewById(R.id.opretbutton);
+
+        opretButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginScreenJoakim.this, OpretBruger.class));
+            }
+});
 
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
 
-        myRef.setValue("Hello, World!");
+        myRef.setValue("test");
+
 
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {

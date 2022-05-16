@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HvorErDuVen">
         <activity
+            android:name=".OpretBruger"
+            android:exported="false" />
+        <activity
             android:name=".SendSMS"
             android:exported="false" />
         <activity
@@ -28,6 +31,7 @@
         <activity
             android:name=".Hovedsiden"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
