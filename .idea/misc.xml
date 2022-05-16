@@ -3,17 +3,43 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/backbotton.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/backbottonblack.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/ic_baseline_add_white_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/right_arrow_white.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundbackjoinroom.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable-v24/roundbacksecurity.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_alarm.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_android.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_login_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_meeting_room_24.xml" value="0.112" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_notifications.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_baseline_security_24.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/klokke.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/drawable/roundbackcreateroom.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_createroom.xml" value="0.152" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_hovedsiden.xml" value="0.24365942028985507" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_main.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_send_sms.xml" value="0.2" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_settings.xml" value="0.18401015228426396" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen/app/src/main/res/layout/activity_hovedsiden.xml" value="0.1" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/drawable/ic_android.xml" value="0.365" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.393" />
-        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_main.xml" value="0.17147922998986828" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_hovedsiden.xml" value="0.5541666666666667" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.3296875" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_send_sms.xml" value="0.49907407407407406" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_settings.xml" value="0.3296875" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/hovedsiden_item.xml" value="0.5" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.393" />
-        <entry key="app/src/main/res/drawable/edt_background.xml" value="0.1395" />
-        <entry key="app/src/main/res/drawable/gradient.xml" value="0.1135" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.153" />
-        <entry key="app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.11195542046605876" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.375" />
+        <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3165" />
       </map>
     </option>
   </component>
