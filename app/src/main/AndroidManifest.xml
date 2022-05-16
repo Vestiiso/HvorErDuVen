@@ -20,6 +20,11 @@
         <activity
             android:name=".LoginScreenJoakim"
             android:exported="false" />
+
+        <activity
+            android:name=".Create_room"
+            android:exported="false" />
+
         <activity
             android:name=".Hovedsiden"
             android:exported="false" />

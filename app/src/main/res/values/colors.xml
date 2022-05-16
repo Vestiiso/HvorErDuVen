@@ -19,5 +19,8 @@
     <color name="admin_account">#ECB144</color>
     <color name="security">#F84956</color>
     <color name="logout">#272020</color>
+    <color name="hovedside">#B5F2F7</color>
+    <color name="Create_room">#52D657</color>
+    <color name="Join_room">#8351DC</color>
 
 </resources>
