@@ -30,16 +30,15 @@ public class Create_room extends AppCompatActivity {
         Join_room.setOnClickListener(new View.OnClickListener() {
         @Override
            public void onClick(View view) {
-              startActivity(new Intent(Create_room.this,MainActivity.class));
+              startActivity(new Intent(Create_room.this,Hovedsiden.class));
         }
        });
 
         Create_room.setOnClickListener(new View.OnClickListener() {
          @Override
             public void onClick(View view) {
-                startActivity(new Intent(Create_room.this,MainActivity.class));
-             System.out.println("tryk på knappen anerkendt");
-         }
+                startActivity(new Intent(Create_room.this,Hovedsiden.class));
+             }
         });
 
     }
