@@ -27,7 +27,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View view) {
             firebaseAuth.signOut();
             finish();
-            startActivity(new Intent(Settings.this, SendSMS.class));
+            startActivity(new Intent(Settings.this, LoginScreenJoakim.class));
             }
         });
 

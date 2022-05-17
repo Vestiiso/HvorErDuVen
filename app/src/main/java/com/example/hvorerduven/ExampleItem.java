@@ -1,5 +1,20 @@
 package com.example.hvorerduven;
 
+
+
+
+
+
+
+// DENNE CLASS SKAL IKKE BRUGES LÆNGERE, MEN VENT LIGE MED AT SLETTE DEN FOR EN SIKKERHEDSSYLD
+
+
+
+
+
+
+
+
 public class ExampleItem {
     private int mImageResource;
     private String mText1;

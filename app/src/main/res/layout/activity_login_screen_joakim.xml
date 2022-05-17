@@ -19,25 +19,24 @@
         />
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerVertical="true"
-        android:hint="Email"
-        android:layout_marginRight="60dp"
         android:layout_marginLeft="60dp"
-        android:textColorHint="#FFF"
-        android:textStyle="bold"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/edt_background"
         android:ellipsize="start"
         android:gravity="center"
-        android:background="@drawable/edt_background"
-        />
+        android:hint="Username"
+        android:textColorHint="#FFF"
+        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/edt_password"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/edt_email"
+        android:layout_below="@id/username"
         android:layout_marginTop="10dp"
         android:hint="Password"
         android:layout_marginRight="60dp"
@@ -49,16 +48,32 @@
         android:background="@drawable/edt_background"
         />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/edt_password"
-        android:layout_marginLeft="60dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:layout_marginRight="60dp"
-        android:background="@drawable/edt_background"
-        android:text="login"
-        android:textColor="#FFFFFF"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#00000000"
+        android:text="LOGIN"
+        android:textStyle="bold" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/opretbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#00000000"
+        android:text="OPRET BRUGER"
         android:textStyle="bold" />
 
 

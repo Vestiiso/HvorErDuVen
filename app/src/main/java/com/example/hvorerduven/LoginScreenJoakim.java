@@ -30,24 +30,12 @@ public class LoginScreenJoakim extends AppCompatActivity {
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference brugernavn = database.getReference("Bruger/"+username+"/brugernavn");
-        DatabaseReference password = database.getReference("Bruger/"+username+"/password");
-        DatabaseReference updateRoom = database.getReference("Bruger/"+username+"/roomID");
+        DatabaseReference myRef = database.getReference("message");
 
-
-        brugernavn.setValue(username);
-        password.setValue(pass);
-        updateRoom.setValue(roomID);
-
-
-
-        DatabaseReference Room = database.getReference("Room/"+roomID);
-
-
-        brugernavn.setValue(roomName);
+        myRef.setValue("Hello, World!");
 
         // Read from the database
-        brugernavn.addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
