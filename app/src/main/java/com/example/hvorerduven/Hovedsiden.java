@@ -69,6 +69,9 @@ public class Hovedsiden extends AppCompatActivity {
         mCardList.add(new Card("Camp området"));
         mCardList.add(new Card("main stage"));
         mCardList.add(new Card("baren"));
+
+
+        
     }
 
     public void buildRecyclerView() {

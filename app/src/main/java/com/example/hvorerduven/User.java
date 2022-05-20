@@ -3,11 +3,20 @@ package com.example.hvorerduven;
 public class User {
     private String brugernavn;
     private String password;
+    private String cardID;
+    private String roomID;
+    //måske de her skal være public?
+
     private Room currentRoom = new Room();
     private Card currentCard;
 
+    public User(){
+
+    }
+
     public User(String brugernavn) {
         this.brugernavn = brugernavn;
+
     }
 
     public String getBrugernavn() {
