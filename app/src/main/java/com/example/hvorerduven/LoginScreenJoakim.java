@@ -2,8 +2,11 @@ package com.example.hvorerduven;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,19 +18,27 @@ import com.google.firebase.storage.StorageReference;
 
 public class LoginScreenJoakim extends AppCompatActivity {
 
+    private Button opretbutton;
+
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen_joakim);
+
+        opretbutton = (Button) findViewById(R.id.Opretbutton);
+        opretbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {openOpretBruger();}
+        });
+
         // Write a message to the database
 
         String username = "kristoffer";
         int pass = 12345;
         int roomID = 001;
         String roomName = "camp";
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
@@ -38,8 +49,6 @@ public class LoginScreenJoakim extends AppCompatActivity {
         DatabaseReference password = database.getReference("Bruger/"+username+"/password");
         DatabaseReference roomNum = database.getReference("Bruger/"+username+"/roomID");
         DatabaseReference roomNam = database.getReference("Room/"+Integer.toString(roomID)+"/roomID");
-
-
 
 
         user.setValue(username);
@@ -79,5 +88,9 @@ public class LoginScreenJoakim extends AppCompatActivity {
                 Log.w("TAG", "Failed to read value.", error.toException());
             }
         });
+    }
+    public void openOpretBruger() {
+        Intent OpretBrugerIntent = new Intent(this, OpretBruger.class);
+        startActivity(OpretBrugerIntent);
     }
 }
