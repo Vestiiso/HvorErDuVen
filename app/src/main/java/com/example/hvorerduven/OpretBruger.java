@@ -4,24 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.button.MaterialButton;
 
+
+
 public class OpretBruger extends AppCompatActivity {
 
+    private Button brugernavn;
+    EditText editBruger;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opret_bruger);
 
+        brugernavn = (Button)findViewById(R.id.opretNyBruger);
+        editBruger   = (EditText)findViewById(R.id.username);
 
-        MaterialButton opretNyBruger = (MaterialButton) findViewById(R.id.opretNyBruger);
-        opretNyBruger.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        brugernavn.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    public void onClick(View view)
+                    {
+                        Log.v("TEST123", editBruger.getText().toString());
+                    }
+                });
+    }
 
             }
-        });
-    }
-}
