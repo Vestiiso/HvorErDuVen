@@ -1,10 +1,13 @@
 package com.example.hvorerduven;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,18 @@ public class Card {
     //FirebaseDatabase db = FirebaseDatabase.getInstance();
     //DatabaseReference dbRefBruger = db.getReference("Bruger");
 
+
+    String username = "kristoffer";
+    int pass = 12345;
+    int roomID = 001;
+    String roomName = "camp";
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference user = database.getReference("Bruger/"+username+"/brugernavn");
+    DatabaseReference password = database.getReference("Bruger/"+username+"/password");
+    DatabaseReference roomNum = database.getReference("Bruger/"+username+"/roomID");
+    DatabaseReference roomNam = database.getReference("Room/"+Integer.toString(roomID)+"/roomID");
+
     private List<User> brugerListe = new ArrayList<>();
 
     public Card(String cardName) {
@@ -31,7 +46,57 @@ public class Card {
         usersInCard.add(new User("Nala"));
         usersInCard.add(new User("Timon"));
 
-        /*//dbRefBruger.addValueEventListener();
+        //koden herunder er fra: https://firebase.google.cn/docs/database/admin/retrieve-data?hl=en&%3Bskip_cache=false&skip_cache=false#child-added
+        final DatabaseReference brugerRef = database.getReference("brugerTest");
+        brugerRef.orderByChild("brugernavn").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                String bruger = dataSnapshot.getValue(String.class);
+                userNamesInCard.add(bruger);
+                System.out.println(dataSnapshot.getKey() + dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        /*
+        user.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                System.out.println("********************************** SVARET ER: " + value);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "FEJL I VED ONDATACHANGE.", error.toException());
+            }
+        });
+
+
+        //dbRefBruger.addValueEventListener();
         DatabaseReference dbBruger;
         dbBruger = FirebaseDatabase.getInstance().getReference("Bruger");
         //dbBruger.addChildEventListener(valueEventListener);
@@ -39,7 +104,6 @@ public class Card {
         Query query = FirebaseDatabase.getInstance().getReference("Bruger")
                 .;
 
-         */
 
         Query query = FirebaseDatabase.getInstance().getReference("Bruger");
         System.out.println(query);
@@ -66,6 +130,7 @@ public class Card {
 
             }
         };
+        */
 
 
 
