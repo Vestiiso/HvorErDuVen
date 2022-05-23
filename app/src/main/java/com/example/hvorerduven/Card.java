@@ -1,17 +1,17 @@
 package com.example.hvorerduven;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Card {
 
-    private int cardID;
     private String cardName;
     private ArrayList<User> usersInCard = new ArrayList<>();
     private ArrayList<String> userNamesInCard = new ArrayList<>();
@@ -20,60 +20,64 @@ public class Card {
     //FirebaseDatabase db = FirebaseDatabase.getInstance();
     //DatabaseReference dbRefBruger = db.getReference("Bruger");
 
-    private List<User> brugerListe = new ArrayList<>();
+
+    String username = "kristoffer";
+    int pass = 12345;
+    int roomID = 1;
+    int cardID = 1;
+    String roomName = "camp";
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference user = database.getReference("Bruger/"+username+"/brugernavn");
+    DatabaseReference password = database.getReference("Bruger/"+username+"/password");
+    DatabaseReference roomNum = database.getReference("Bruger/"+username+"/roomID");
+    DatabaseReference roomNam = database.getReference("Room/"+Integer.toString(roomID)+"/roomID");
+
+    //private List<User> brugerListe = new ArrayList<>();
 
     public Card(String cardName) {
         this.cardName = cardName;
 
         //her skal vi tilføje navnene fra vores database, men jeg tilføjer dem bare manuelt for at teste
 
-        usersInCard.add(new User("Simba"));
-        usersInCard.add(new User("Nala"));
-        usersInCard.add(new User("Timon"));
+        //usersInCard.add(new User("Simba"));
+        //usersInCard.add(new User("Nala"));
+        //usersInCard.add(new User("Timon"));
 
-        /*//dbRefBruger.addValueEventListener();
-        DatabaseReference dbBruger;
-        dbBruger = FirebaseDatabase.getInstance().getReference("Bruger");
-        //dbBruger.addChildEventListener(valueEventListener);
 
-        Query query = FirebaseDatabase.getInstance().getReference("Bruger")
-                .;
-
-         */
-
-        Query query = FirebaseDatabase.getInstance().getReference("Bruger");
-        System.out.println(query);
-
-        //query.addListenerForSingleValueEvent(brugerValueEventListener);
-
-        ValueEventListener brugerValueEventListener = new ValueEventListener() {
+        final DatabaseReference brugerRef = database.getReference("Bruger");
+        brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                brugerListe.clear();
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        User user = snapshot.getValue(User.class);
-                        brugerListe.add(user);
-                        System.out.printf("user");
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+
+
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == 1) {
+                        String bruger = brugerSnapshot.getKey();
+                        userNamesInCard.add(bruger);
+                        System.out.println(bruger);
                     }
-                    //System.out.println(brugerListe.toString());
-                    //CardAdapter.notifyDataSetChanged();
+
                 }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        };
+        });
 
 
 
 
-        for (int i = 0; i < usersInCard.size(); i++ ){
+
+
+        /*for (int i = 0; i < usersInCard.size(); i++ ){
             userNamesInCard.add(usersInCard.get(i).getBrugernavn() );
             //System.out.println(usersInCard.get(i).getBrugernavn());
         }
+
+         */
 
     }
 
