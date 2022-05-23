@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class Card {
 
-    private int cardID;
     private String cardName;
     private ArrayList<User> usersInCard = new ArrayList<>();
     private ArrayList<String> userNamesInCard = new ArrayList<>();
@@ -24,7 +23,8 @@ public class Card {
 
     String username = "kristoffer";
     int pass = 12345;
-    int roomID = 001;
+    int roomID = 1;
+    int cardID = 1;
     String roomName = "camp";
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -46,13 +46,17 @@ public class Card {
 
 
         final DatabaseReference brugerRef = database.getReference("Bruger");
-                brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
+        brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
-                    String bruger = brugerSnapshot.getKey();
-                    userNamesInCard.add(bruger);
-                    System.out.println(bruger);
+
+
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == 1) {
+                        String bruger = brugerSnapshot.getKey();
+                        userNamesInCard.add(bruger);
+                        System.out.println(bruger);
+                    }
 
                 }
             }
