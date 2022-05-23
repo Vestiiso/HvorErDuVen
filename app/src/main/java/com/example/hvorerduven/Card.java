@@ -1,16 +1,14 @@
 package com.example.hvorerduven;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Card {
 
@@ -35,7 +33,7 @@ public class Card {
     DatabaseReference roomNum = database.getReference("Bruger/"+username+"/roomID");
     DatabaseReference roomNam = database.getReference("Room/"+Integer.toString(roomID)+"/roomID");
 
-    private List<User> brugerListe = new ArrayList<>();
+    //private List<User> brugerListe = new ArrayList<>();
 
     public Card(String cardName) {
         this.cardName = cardName;
@@ -46,14 +44,38 @@ public class Card {
         usersInCard.add(new User("Nala"));
         usersInCard.add(new User("Timon"));
 
-        //koden herunder er fra: https://firebase.google.cn/docs/database/admin/retrieve-data?hl=en&%3Bskip_cache=false&skip_cache=false#child-added
+
+        final DatabaseReference brugerRef = database.getReference("brugerTest");
+                brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+                    String bruger = brugerSnapshot.getValue(String.class);
+                    userNamesInCard.add(bruger);
+                    System.out.println(bruger);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+        /*
         final DatabaseReference brugerRef = database.getReference("brugerTest");
         brugerRef.orderByChild("brugernavn").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                String bruger = dataSnapshot.getValue(String.class);
-                userNamesInCard.add(bruger);
-                System.out.println(dataSnapshot.getKey() + dataSnapshot.getValue());
+                //User bruger = dataSnapshot.getValue(User.class);
+                //User bruger = dataSnapshot.getValue(User.class);
+                //String bruger = dataSnapshot.toString();
+                //System.out.println(dataSnapshot.getKey() + dataSnapshot.getValue());
+                //System.out.println(bruger.getBrugernavn());
             }
 
             @Override
@@ -76,6 +98,8 @@ public class Card {
 
             }
         });
+
+         */
 
 
         /*
@@ -131,8 +155,6 @@ public class Card {
             }
         };
         */
-
-
 
 
         for (int i = 0; i < usersInCard.size(); i++ ){
