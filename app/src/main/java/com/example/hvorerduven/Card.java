@@ -40,17 +40,17 @@ public class Card {
 
         //her skal vi tilføje navnene fra vores database, men jeg tilføjer dem bare manuelt for at teste
 
-        usersInCard.add(new User("Simba"));
-        usersInCard.add(new User("Nala"));
-        usersInCard.add(new User("Timon"));
+        //usersInCard.add(new User("Simba"));
+        //usersInCard.add(new User("Nala"));
+        //usersInCard.add(new User("Timon"));
 
 
-        final DatabaseReference brugerRef = database.getReference("brugerTest");
+        final DatabaseReference brugerRef = database.getReference("Bruger");
                 brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
-                    String bruger = brugerSnapshot.getValue(String.class);
+                    String bruger = brugerSnapshot.getKey();
                     userNamesInCard.add(bruger);
                     System.out.println(bruger);
 
@@ -66,101 +66,14 @@ public class Card {
 
 
 
-        /*
-        final DatabaseReference brugerRef = database.getReference("brugerTest");
-        brugerRef.orderByChild("brugernavn").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-                //User bruger = dataSnapshot.getValue(User.class);
-                //User bruger = dataSnapshot.getValue(User.class);
-                //String bruger = dataSnapshot.toString();
-                //System.out.println(dataSnapshot.getKey() + dataSnapshot.getValue());
-                //System.out.println(bruger.getBrugernavn());
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-         */
 
 
-        /*
-        user.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                System.out.println("********************************** SVARET ER: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "FEJL I VED ONDATACHANGE.", error.toException());
-            }
-        });
-
-
-        //dbRefBruger.addValueEventListener();
-        DatabaseReference dbBruger;
-        dbBruger = FirebaseDatabase.getInstance().getReference("Bruger");
-        //dbBruger.addChildEventListener(valueEventListener);
-
-        Query query = FirebaseDatabase.getInstance().getReference("Bruger")
-                .;
-
-
-        Query query = FirebaseDatabase.getInstance().getReference("Bruger");
-        System.out.println(query);
-
-        //query.addListenerForSingleValueEvent(brugerValueEventListener);
-
-        ValueEventListener brugerValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                brugerListe.clear();
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        User user = snapshot.getValue(User.class);
-                        brugerListe.add(user);
-                        System.out.printf("user");
-                    }
-                    //System.out.println(brugerListe.toString());
-                    //CardAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        */
-
-
-        for (int i = 0; i < usersInCard.size(); i++ ){
+        /*for (int i = 0; i < usersInCard.size(); i++ ){
             userNamesInCard.add(usersInCard.get(i).getBrugernavn() );
             //System.out.println(usersInCard.get(i).getBrugernavn());
         }
+
+         */
 
     }
 
