@@ -2,8 +2,11 @@ package com.example.hvorerduven;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,12 +18,23 @@ import com.google.firebase.storage.StorageReference;
 
 public class LoginScreenJoakim extends AppCompatActivity {
 
+    private Button opretBruger;
+
     private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen_joakim);
+
+        opretBruger = (Button) findViewById(R.id.opretbutton);
+
+        opretBruger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openOpretBruger();
+            }
+        });
         // Write a message to the database
 
         String username = "kristoffer";
@@ -80,4 +94,10 @@ public class LoginScreenJoakim extends AppCompatActivity {
             }
         });
     }
+
+    public void openOpretBruger() {
+        Intent OpretBrugerIntent = new Intent(this, OpretBruger.class);
+        startActivity(OpretBrugerIntent);
+    }
+
 }
