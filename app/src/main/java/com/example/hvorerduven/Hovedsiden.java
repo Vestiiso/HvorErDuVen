@@ -65,8 +65,8 @@ public class Hovedsiden extends AppCompatActivity {
         Card nytKort = new Card("nyt kort navn");
         nytKort.setCardID(5);
         addCardToDB(nytKort);
-        mCardList.add(position, nytKort );
-        mAdapter.notifyItemInserted(position);
+        mCardList.add(0, nytKort );
+        mAdapter.notifyItemInserted(0);
     }
 
     public void addCardToDB(Card nytKort) { //fremgangsmåde herfra: https://stackoverflow.com/questions/37031222/firebase-add-new-child-with-specified-name
