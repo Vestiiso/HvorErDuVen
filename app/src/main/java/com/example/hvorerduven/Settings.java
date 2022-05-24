@@ -42,6 +42,7 @@ public class Settings extends AppCompatActivity {
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(Settings.this,MainActivity.class));
             }
         });
