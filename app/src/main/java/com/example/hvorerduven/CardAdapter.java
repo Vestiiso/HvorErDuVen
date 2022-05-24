@@ -8,9 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder> {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference cardRef = database.getReference("Card");
+
     private ArrayList<Card> mCardList;
 
         public static class CardViewholder extends RecyclerView.ViewHolder{
@@ -45,7 +52,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
         Card currentCard = mCardList.get(position); //det item der er ved 'position' i arraylisten
 
 
-        //holder.mImageView.setImageResource(currentItem.getmImageResource()); //tager billedressourcen fra vores item og sætter den ind i holders imageview
         holder.mTextview1.setText(currentCard.getCardName());
         holder.mTextview2.setText(currentCard.getUserNamesInCard());
 

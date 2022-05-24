@@ -13,27 +13,18 @@ import java.util.ArrayList;
 public class Card {
 
     private String cardName;
-    private ArrayList<User> usersInCard = new ArrayList<>();
-    private ArrayList<String> userNamesInCard = new ArrayList<>();
-    private Room belongsToRoom;
-
-    //FirebaseDatabase db = FirebaseDatabase.getInstance();
-    //DatabaseReference dbRefBruger = db.getReference("Bruger");
-
-
-    String username = "kristoffer";
     int pass = 12345;
     int roomID = 1;
     int cardID = 1;
     String roomName = "camp";
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference user = database.getReference("Bruger/"+username+"/brugernavn");
-    DatabaseReference password = database.getReference("Bruger/"+username+"/password");
-    DatabaseReference roomNum = database.getReference("Bruger/"+username+"/roomID");
-    DatabaseReference roomNam = database.getReference("Room/"+Integer.toString(roomID)+"/roomID");
+    private ArrayList<User> usersInCard = new ArrayList<>();
+    private ArrayList<String> userNamesInCard = new ArrayList<>();
+    private Room belongsToRoom;
 
-    //private List<User> brugerListe = new ArrayList<>();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
     public Card(String cardName) {
         this.cardName = cardName;
@@ -51,7 +42,9 @@ public class Card {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
 
-
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == null){
+                        break;
+                    }
                     if (brugerSnapshot.child("cardID").getValue(int.class) == 1) {
                         String bruger = brugerSnapshot.getKey();
                         userNamesInCard.add(bruger);
@@ -67,17 +60,6 @@ public class Card {
             }
         });
 
-
-
-
-
-
-        /*for (int i = 0; i < usersInCard.size(); i++ ){
-            userNamesInCard.add(usersInCard.get(i).getBrugernavn() );
-            //System.out.println(usersInCard.get(i).getBrugernavn());
-        }
-
-         */
 
     }
 

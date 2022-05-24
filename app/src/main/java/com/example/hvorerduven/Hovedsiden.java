@@ -9,7 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Hovedsiden extends AppCompatActivity {
 
@@ -22,6 +27,9 @@ public class Hovedsiden extends AppCompatActivity {
     private Button buttonRemove;
     private EditText editTextInsert;
     private EditText editTextRemove;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference cardRef = database.getReference("Card");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +62,21 @@ public class Hovedsiden extends AppCompatActivity {
     }
 
     public void insertItem(int position) {
-        mCardList.add(position-1, new Card("Her skal kortets navn indsættes") );
+        Card nytKort = new Card("nyt kort navn");
+        nytKort.setCardID(5);
+        addCardToDB(nytKort);
+        mCardList.add(position, nytKort );
         mAdapter.notifyItemInserted(position);
+    }
+
+    public void addCardToDB(Card nytKort) { //fremgangsmåde herfra: https://stackoverflow.com/questions/37031222/firebase-add-new-child-with-specified-name
+        Map<String, String> cardData = new HashMap<>();
+        cardData.put("CardName", nytKort.getCardName());
+        cardData.put("roomID", "hellow room");
+
+        cardRef = cardRef.child(String.valueOf(nytKort.cardID));
+        cardRef.setValue(cardData);
+
     }
 
     public void removeItem(int position) {
