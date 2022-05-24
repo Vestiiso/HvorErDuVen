@@ -3,6 +3,23 @@ package com.example.hvorerduven;
 public class User {
     private String brugernavn;
     private String password;
+
+    public String getCardID() {
+        return cardID;
+    }
+
+    public void setCardID(String cardID) {
+        this.cardID = cardID;
+    }
+
+    public String getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(String roomID) {
+        this.roomID = roomID;
+    }
+
     private String cardID;
     private String roomID;
     //måske de her skal være public?
