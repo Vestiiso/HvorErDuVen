@@ -5,12 +5,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,8 +51,8 @@ public class Hovedsiden extends AppCompatActivity {
         buttonInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int position = Integer.parseInt(editTextInsert.getText().toString());
-                insertItem(position);
+                //int position = Integer.parseInt(editTextInsert.getText().toString());
+                insertItem();
             }
         });
 
@@ -59,9 +63,34 @@ public class Hovedsiden extends AppCompatActivity {
                 removeItem(position);
             }
         });
+
+        //Sørg for at alle cards bliver opdateret, når der bliver oprettet nye brugere
+        final DatabaseReference brugerRef = database.getReference("Bruger");
+        brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == null){
+                        break;
+                    }
+                    else {
+                        mAdapter.notifyDataSetChanged();
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
-    public void insertItem(int position) {
+    public void insertItem() {
         Card nytKort = new Card("nyt kort navn");
         nytKort.setCardID(5);
         addCardToDB(nytKort);
@@ -76,6 +105,8 @@ public class Hovedsiden extends AppCompatActivity {
 
         cardRef = cardRef.child(String.valueOf(nytKort.cardID));
         cardRef.setValue(cardData);
+        cardRef = database.getReference("Card");
+
 
     }
 

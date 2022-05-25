@@ -29,15 +29,8 @@ public class Card {
     public Card(String cardName) {
         this.cardName = cardName;
 
-        //her skal vi tilføje navnene fra vores database, men jeg tilføjer dem bare manuelt for at teste
-
-        //usersInCard.add(new User("Simba"));
-        //usersInCard.add(new User("Nala"));
-        //usersInCard.add(new User("Timon"));
-
-
         final DatabaseReference brugerRef = database.getReference("Bruger");
-        brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
+        brugerRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
@@ -48,7 +41,7 @@ public class Card {
                     if (brugerSnapshot.child("cardID").getValue(int.class) == 1) {
                         String bruger = brugerSnapshot.getKey();
                         userNamesInCard.add(bruger);
-                        System.out.println(bruger);
+
                     }
 
                 }
@@ -60,6 +53,26 @@ public class Card {
             }
         });
 
+        /*//find det højeste cardID i databasen, og gør dette korts ID 1 højere
+        final DatabaseReference cardRef = database.getReference("Card");
+        cardRef.orderByKey().limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String str = dataSnapshot.getChildren();
+
+                System.out.println("*****************************" + dataSnapshot.getKey() );
+                Log.d("tag", "*********************************************************" + dataSnapshot.getChildren() + str);
+                //cardID = Integer.parseInt(cardRef.getKey())+1;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+         */
 
     }
 
