@@ -21,8 +21,6 @@
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_opret_bruger.xml" value="0.1" />
-        <entry key="..\:/Users/Marcus/StudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.2817028985507246" />
-        <entry key="..\:/Users/Marcus/StudioProjects/HvorErDuVen2/app/src/main/res/layout/activity_opret_bruger.xml" value="0.2817028985507246" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/drawable/ic_android.xml" value="0.365" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.393" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/activity_hovedsiden.xml" value="0.5541666666666667" />
@@ -33,6 +31,8 @@
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/layout/hovedsiden_item.xml" value="0.5" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.393" />
         <entry key="..\:/dokumenter/RUC/4. semester/projekt/app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3165" />
+        <entry key="app/src/main/res/layout/activity_login_screen_joakim.xml" value="0.11865942028985507" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.11195542046605876" />
       </map>
     </option>
   </component>

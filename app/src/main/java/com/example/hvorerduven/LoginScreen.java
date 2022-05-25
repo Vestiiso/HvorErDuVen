@@ -8,26 +8,38 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-public class LoginScreenJoakim extends AppCompatActivity {
+public class LoginScreen extends AppCompatActivity {
 
     private Button opretBruger;
-
     private FirebaseStorage storage = FirebaseStorage.getInstance();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_screen_joakim);
+        setContentView(R.layout.activity_login_screen);
 
         opretBruger = (Button) findViewById(R.id.opretbutton);
+
+        MaterialButton loginbutton = (MaterialButton) findViewById(R.id.loginbutton);
+        loginbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLogin();
+            }
+        });
+
 
         opretBruger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,12 +66,13 @@ public class LoginScreenJoakim extends AppCompatActivity {
         DatabaseReference roomNam = database.getReference("Room/"+Integer.toString(roomID)+"/roomID");
 
 
-
-
         user.setValue(username);
         password.setValue(pass);
         roomNum.setValue(roomID);
         roomNam.setValue(roomName);
+
+
+
 
 
         // Read from the database
@@ -95,9 +108,39 @@ public class LoginScreenJoakim extends AppCompatActivity {
         });
     }
 
+
+
+    /* private void checkIfUserExists() {
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference("Bruger/");
+        user.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    username = (String) dataSnapshot.child("Bruger").getValue();
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+     */
+
+    public void openLogin() {
+        Intent LoginIntent = new Intent(this, Hovedsiden.class);
+        startActivity(LoginIntent);
+    }
+
     public void openOpretBruger() {
         Intent OpretBrugerIntent = new Intent(this, OpretBruger.class);
         startActivity(OpretBrugerIntent);
     }
+
+
 
 }

@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openLogin() {
-        Intent LoginIntent = new Intent(this, LoginScreenJoakim.class);
+        Intent LoginIntent = new Intent(this, LoginScreen.class);
         startActivity(LoginIntent);
     }
 
