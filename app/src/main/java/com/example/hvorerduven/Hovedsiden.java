@@ -32,6 +32,7 @@ public class Hovedsiden extends AppCompatActivity {
     private EditText editTextInsert;
     private EditText editTextRemove;
 
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference cardRef = database.getReference("Card");
 
@@ -51,8 +52,8 @@ public class Hovedsiden extends AppCompatActivity {
         buttonInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //int position = Integer.parseInt(editTextInsert.getText().toString());
-                insertItem();
+                String cardName = editTextInsert.getText().toString();
+                insertItem(cardName);
             }
         });
 
@@ -90,9 +91,9 @@ public class Hovedsiden extends AppCompatActivity {
         });
     }
 
-    public void insertItem() {
-        Card nytKort = new Card("nyt kort navn");
-        nytKort.setCardID(5);
+    public void insertItem(String cardName) {
+        Card nytKort = new Card(cardName);
+        //nytKort.setCardID(nytKort.generateCardID());
         addCardToDB(nytKort);
         mCardList.add(0, nytKort );
         mAdapter.notifyItemInserted(0);
@@ -103,10 +104,11 @@ public class Hovedsiden extends AppCompatActivity {
         cardData.put("CardName", nytKort.getCardName());
         cardData.put("roomID", "hellow room");
 
-        cardRef = cardRef.child(String.valueOf(nytKort.cardID));
+        System.out.println("addcard modtager: " + nytKort.generateCardID());
+        cardRef = cardRef.child(String.valueOf(nytKort.generateCardID())); //værdien her er hvad kortet kommer til at hedde, (eller hvad dens rens key er)
+        //System.out.println("cardref får: " + String.valueOf(nytKort.generateCardID()));
         cardRef.setValue(cardData);
         cardRef = database.getReference("Card");
-
 
     }
 
@@ -121,8 +123,6 @@ public class Hovedsiden extends AppCompatActivity {
         mCardList.add(new Card("Camp området"));
         mCardList.add(new Card("main stage"));
         mCardList.add(new Card("baren"));
-
-
         
     }
 

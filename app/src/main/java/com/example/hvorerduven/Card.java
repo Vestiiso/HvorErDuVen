@@ -16,6 +16,7 @@ public class Card {
     int pass = 12345;
     int roomID = 1;
     int cardID = 1;
+    int nytCardID;
     String roomName = "camp";
 
     private ArrayList<User> usersInCard = new ArrayList<>();
@@ -29,6 +30,7 @@ public class Card {
     public Card(String cardName) {
         this.cardName = cardName;
 
+        //tilføj bruger med et hvis cardID til userNamesInCard, der bruges til at vise brugere i kortet
         final DatabaseReference brugerRef = database.getReference("Bruger");
         brugerRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -53,17 +55,29 @@ public class Card {
             }
         });
 
-        /*//find det højeste cardID i databasen, og gør dette korts ID 1 højere
+        /*
+        //find det højeste cardID i databasen, og gør dette korts ID 1 højere
         final DatabaseReference cardRef = database.getReference("Card");
-        cardRef.orderByKey().limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+        cardRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hver bruger
 
-                String str = dataSnapshot.getChildren();
+                    if (cardSnapshot.getKey() != null) {
+                        System.out.println(cardSnapshot.getKey());
+                        setCardID(Integer.parseInt(cardSnapshot.getKey())+1);
+                        System.out.println("cardID = " + cardID);
 
-                System.out.println("*****************************" + dataSnapshot.getKey() );
-                Log.d("tag", "*********************************************************" + dataSnapshot.getChildren() + str);
-                //cardID = Integer.parseInt(cardRef.getKey())+1;
+
+                    } else {
+
+                        System.out.println("der gik noget galt i 'cardRef' i card.");
+                        break;
+
+                    }
+
+                }
+
             }
 
             @Override
@@ -74,6 +88,43 @@ public class Card {
 
          */
 
+    }
+
+
+    public int generateCardID(){
+        //find det højeste cardID i databasen, og gør dette korts ID 1 højere
+
+        final DatabaseReference cardRef = database.getReference("Card");
+        cardRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+
+                    if (cardSnapshot.getKey() != null) {
+                        System.out.println(cardSnapshot.getKey());
+                        nytCardID = Integer.parseInt(cardSnapshot.getKey())+1;
+                        System.out.println("cardID = " + nytCardID);
+
+
+                    } else {
+
+                        System.out.println("der gik noget galt i 'cardRef' i card.");
+                        break;
+
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        System.out.println("nytcardid: " + nytCardID);
+        return nytCardID;
     }
 
 

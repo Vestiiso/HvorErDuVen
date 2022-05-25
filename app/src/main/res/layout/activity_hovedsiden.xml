@@ -17,35 +17,35 @@
         android:layout_marginBottom="100dp"
         />
 
-    <EditText
-        android:id="@+id/edittext_insert"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="25dp"
-        android:inputType="number" />
-
     <Button
         android:id="@+id/button_insert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Indsæt"
         android:layout_alignBottom="@+id/edittext_insert"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/edittext_insert"
-        />
+        android:text="Indsæt" />
+
+    <EditText
+        android:id="@+id/edittext_insert"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/recyclerView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="-100dp"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/edittext_remove"
-        android:layout_width="40dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginBottom="25dp"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/edittext_insert"
+        android:layout_marginStart="13dp"
+        android:layout_alignParentStart="true"
         android:layout_toEndOf="@+id/button_insert"
-        android:inputType="number"
-        />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/button_remove"
