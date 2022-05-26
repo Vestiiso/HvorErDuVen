@@ -22,6 +22,8 @@ import java.util.Map;
 
 public class Hovedsiden extends AppCompatActivity {
 
+    int nytCardID;
+
     private ArrayList<Card> mCardList;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -49,11 +51,33 @@ public class Hovedsiden extends AppCompatActivity {
         editTextInsert = findViewById(R.id.edittext_insert);
         editTextRemove = findViewById(R.id.edittext_remove);
 
+        //find det højeste cardID i databasen, og gør dette korts ID 1 højere
+        final DatabaseReference cardRef = database.getReference("Card");
+        cardRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+                    if (cardSnapshot.getKey() != null) {
+                        nytCardID = Integer.parseInt(cardSnapshot.getKey())+1;
+                    } else {
+                        System.out.println("der gik noget galt i 'cardRef' i card.");
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
+
         buttonInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String cardName = editTextInsert.getText().toString();
                 insertItem(cardName);
+
             }
         });
 
@@ -89,26 +113,28 @@ public class Hovedsiden extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     public void insertItem(String cardName) {
         Card nytKort = new Card(cardName);
-        //nytKort.setCardID(nytKort.generateCardID());
         addCardToDB(nytKort);
         mCardList.add(0, nytKort );
         mAdapter.notifyItemInserted(0);
+
     }
 
     public void addCardToDB(Card nytKort) { //fremgangsmåde herfra: https://stackoverflow.com/questions/37031222/firebase-add-new-child-with-specified-name
         Map<String, String> cardData = new HashMap<>();
         cardData.put("CardName", nytKort.getCardName());
-        cardData.put("roomID", "hellow room");
+        String midlertidigtRoomID = "roomID test";
+        cardData.put("roomID", midlertidigtRoomID);
 
-        System.out.println("addcard modtager: " + nytKort.generateCardID());
-        cardRef = cardRef.child(String.valueOf(nytKort.generateCardID())); //værdien her er hvad kortet kommer til at hedde, (eller hvad dens rens key er)
-        //System.out.println("cardref får: " + String.valueOf(nytKort.generateCardID()));
+        cardRef = cardRef.child(String.valueOf(nytCardID)); //værdien her er hvad kortet kommer til at hedde, (eller hvad dens rens key er)
         cardRef.setValue(cardData);
         cardRef = database.getReference("Card");
+        System.out.println("-----------\nNyt kort oprettet med ID: " + nytCardID + "\nKort navn: " + nytKort.getCardName() + "\nkortets roomID: " + midlertidigtRoomID + "\n-----------");
 
     }
 
@@ -118,7 +144,7 @@ public class Hovedsiden extends AppCompatActivity {
 
     }
 
-    public void lavCardList() {
+    public void lavCardList() { // skal ændres så den opretter kort der eksisterer i databasen
         mCardList = new ArrayList<>();
         mCardList.add(new Card("Camp området"));
         mCardList.add(new Card("main stage"));
