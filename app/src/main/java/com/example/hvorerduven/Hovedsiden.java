@@ -45,11 +45,7 @@ public class Hovedsiden extends AppCompatActivity {
 
         lavCardList();
         buildRecyclerView();
-
-        buttonInsert = findViewById(R.id.button_insert);
-        buttonRemove = findViewById(R.id.button_remove);
-        editTextInsert = findViewById(R.id.edittext_insert);
-        editTextRemove = findViewById(R.id.edittext_remove);
+        setButtons(); //indsætter vores knapper
 
         //find det højeste cardID i databasen, og gør dette korts ID 1 højere
         final DatabaseReference cardRef = database.getReference("Card");
@@ -70,25 +66,6 @@ public class Hovedsiden extends AppCompatActivity {
             }
         });
 
-
-
-        buttonInsert.setOnClickListener(new View.OnClickListener() { //når du klikker på indsæt knappen....
-            @Override
-            public void onClick(View view) {
-                String cardName = editTextInsert.getText().toString();
-                insertItem(cardName);
-
-            }
-        });
-
-        buttonRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = Integer.parseInt(editTextRemove.getText().toString());
-                removeItem(position);
-            }
-        });
-
         //Sørg for at alle cards bliver opdateret, når der bliver oprettet nye brugere
         final DatabaseReference brugerRef = database.getReference("Bruger");
         brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
@@ -101,13 +78,9 @@ public class Hovedsiden extends AppCompatActivity {
                     }
                     else {
                         mAdapter.notifyDataSetChanged();
-
                     }
-
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -138,7 +111,7 @@ public class Hovedsiden extends AppCompatActivity {
     }
 
     public void removeItem(int position) {
-        mCardList.remove(position-1);
+        mCardList.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
@@ -159,9 +132,7 @@ public class Hovedsiden extends AppCompatActivity {
     public void buildRecyclerView() {
         //listen bliver givet til vores adapter, som giver den til vores viewholder
         mRecyclerView = findViewById(R.id.recyclerView);
-        //mRecyclerView.setHasFixedSize(true); //hvis vi ved at listen ikke ændrer størrelse, kan denne linje optimere performance
         mLayoutManager = new LinearLayoutManager(this);
-        //mAdapter = new CardAdapter(exampleList);
         mAdapter = new CardAdapter(mCardList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -171,6 +142,35 @@ public class Hovedsiden extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 changeItem(position, "Clicked");
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                removeItem(position);
+            }
+        });
+    }
+
+    public void setButtons() {
+        buttonInsert = findViewById(R.id.button_insert);
+        buttonRemove = findViewById(R.id.button_remove);
+        editTextInsert = findViewById(R.id.edittext_insert);
+        editTextRemove = findViewById(R.id.edittext_remove);
+
+        buttonInsert.setOnClickListener(new View.OnClickListener() { //når du klikker på indsæt knappen....
+            @Override
+            public void onClick(View view) {
+                String cardName = editTextInsert.getText().toString();
+                insertItem(cardName);
+
+            }
+        });
+
+        buttonRemove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = Integer.parseInt(editTextRemove.getText().toString());
+                removeItem(position);
             }
         });
     }

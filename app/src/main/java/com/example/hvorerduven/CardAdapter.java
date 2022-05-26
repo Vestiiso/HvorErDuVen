@@ -3,6 +3,7 @@ package com.example.hvorerduven;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 // https://www.youtube.com/watch?v=17NbUcEts9c
 // https://www.youtube.com/watch?v=kaf2dCd8Zfs
 // https://www.youtube.com/watch?v=bhhs4bwYyhc
+// https://www.youtube.com/watch?v=HMjI7cLsyfw
 //fuld playliste: https://www.youtube.com/playlist?list=PLrnPJCHvNZuBtTYUuc5Pyo4V7xZ2HNtf4
 
 
@@ -33,6 +35,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
     //lyt efter om man klipper på et af kortene
     public interface OnItemClickListener {
         void onItemClick(int position);
+        void onDeleteClick (int position);
 
     }
 
@@ -44,6 +47,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
             //public ImageView mImageView;
             public TextView mTextview1;
             public TextView mTextview2;
+            public ImageView mDeleteImage;
 
             public CardViewholder(@NonNull View itemView, final OnItemClickListener listener) {
                 super(itemView);
@@ -51,6 +55,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
                 //mImageView = itemView.findViewById(R.id.imageView);
                 mTextview1 = itemView.findViewById(R.id.textView);
                 mTextview2 = itemView.findViewById(R.id.textView2);
+                mDeleteImage = itemView.findViewById(R.id.image_delete);
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -64,6 +69,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
                         }
                     }
                 });
+
+                mDeleteImage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (listener != null) {
+                            int position = getAdapterPosition();
+
+                            if (position != RecyclerView.NO_POSITION) {
+                                listener.onDeleteClick(position);
+                            }
+                        }
+                    }
+                });
+
+
             }
         }
 
