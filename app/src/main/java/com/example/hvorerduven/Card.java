@@ -27,8 +27,9 @@ public class Card {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
-    public Card(String cardName) {
+    public Card(String cardName, int cardID) {
         this.cardName = cardName;
+        this.cardID = cardID;
 
         //tilføj bruger med et hvis cardID til userNamesInCard, der bruges til at vise brugere i kortet
         final DatabaseReference brugerRef = database.getReference("Bruger");
@@ -40,7 +41,7 @@ public class Card {
                     if (brugerSnapshot.child("cardID").getValue(int.class) == null){
                         break;
                     }
-                    if (brugerSnapshot.child("cardID").getValue(int.class) == 1) {
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == cardID) { //her indsættes det tal man vil lede efter under en brugers cardID
                         String bruger = brugerSnapshot.getKey();
                         userNamesInCard.add(bruger);
                     }
@@ -51,6 +52,12 @@ public class Card {
             }
         });
     }
+
+    //skift kortets overskrift
+    public void changeText1(String text) { //den her skal modificeres fra guiden, så den ikke ændrer teksten
+        cardName = text;
+    }
+
     public int getCardID() {
         return cardID;
     }

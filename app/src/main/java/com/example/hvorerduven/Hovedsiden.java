@@ -26,7 +26,7 @@ public class Hovedsiden extends AppCompatActivity {
 
     private ArrayList<Card> mCardList;
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private CardAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Button buttonInsert;
@@ -72,7 +72,7 @@ public class Hovedsiden extends AppCompatActivity {
 
 
 
-        buttonInsert.setOnClickListener(new View.OnClickListener() {
+        buttonInsert.setOnClickListener(new View.OnClickListener() { //når du klikker på indsæt knappen....
             @Override
             public void onClick(View view) {
                 String cardName = editTextInsert.getText().toString();
@@ -118,7 +118,7 @@ public class Hovedsiden extends AppCompatActivity {
     }
 
     public void insertItem(String cardName) {
-        Card nytKort = new Card(cardName);
+        Card nytKort = new Card(cardName, nytCardID);
         addCardToDB(nytKort);
         mCardList.add(0, nytKort );
         mAdapter.notifyItemInserted(0);
@@ -135,20 +135,24 @@ public class Hovedsiden extends AppCompatActivity {
         cardRef.setValue(cardData);
         cardRef = database.getReference("Card");
         System.out.println("-----------\nNyt kort oprettet med ID: " + nytCardID + "\nKort navn: " + nytKort.getCardName() + "\nkortets roomID: " + midlertidigtRoomID + "\n-----------");
-
     }
 
     public void removeItem(int position) {
         mCardList.remove(position-1);
         mAdapter.notifyItemRemoved(position);
+    }
+
+    public void changeItem(int position, String text) {
+        mCardList.get(position).changeText1(text); //skifter navnet på overskriften
+        mAdapter.notifyItemChanged(position);
 
     }
 
     public void lavCardList() { // skal ændres så den opretter kort der eksisterer i databasen
         mCardList = new ArrayList<>();
-        mCardList.add(new Card("Camp området"));
-        mCardList.add(new Card("main stage"));
-        mCardList.add(new Card("baren"));
+        mCardList.add(new Card("Camp området", 1));
+        mCardList.add(new Card("main stage", 2));
+        mCardList.add(new Card("baren",3));
         
     }
 
@@ -162,6 +166,13 @@ public class Hovedsiden extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() { //aktiverer når man klikker på et kort
+            @Override
+            public void onItemClick(int position) {
+                changeItem(position, "Clicked");
+            }
+        });
     }
 
 }
