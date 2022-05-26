@@ -37,25 +37,6 @@
         android:layout_marginTop="-100dp"
         android:inputType="text" />
 
-    <EditText
-        android:id="@+id/edittext_remove"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edittext_insert"
-        android:layout_marginStart="13dp"
-        android:layout_alignParentStart="true"
-        android:layout_toEndOf="@+id/button_insert"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/button_remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fjern"
-        android:layout_alignBottom="@+id/edittext_remove"
-        android:layout_toEndOf="@+id/edittext_remove"
-        />
-
 </RelativeLayout>
 
 

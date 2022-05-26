@@ -4,6 +4,21 @@ public class User {
     private String brugernavn;
     private String password;
 
+    private String cardID;
+    private String roomID;
+
+    private Room currentRoom = new Room();
+    //private Card currentCard;
+
+    public User(){
+
+    }
+
+    public User(String brugernavn) {
+        this.brugernavn = brugernavn;
+
+    }
+
     public String getCardID() {
         return cardID;
     }
@@ -18,22 +33,6 @@ public class User {
 
     public void setRoomID(String roomID) {
         this.roomID = roomID;
-    }
-
-    private String cardID;
-    private String roomID;
-    //måske de her skal være public?
-
-    private Room currentRoom = new Room();
-    private Card currentCard;
-
-    public User(){
-
-    }
-
-    public User(String brugernavn) {
-        this.brugernavn = brugernavn;
-
     }
 
     public String getBrugernavn() {
@@ -58,13 +57,5 @@ public class User {
 
     public void setCurrentRoom(Room currentRoom) {
         this.currentRoom = currentRoom;
-    }
-
-    public Card getCurrentCard() {
-        return currentCard;
-    }
-
-    public void setCurrentCard(Card currentCard) {
-        this.currentCard = currentCard;
     }
 }

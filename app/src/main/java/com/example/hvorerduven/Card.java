@@ -39,6 +39,7 @@ public class Card {
                 for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
 
                     if (brugerSnapshot.child("cardID").getValue(int.class) == null){
+
                         break;
                     }
                     if (brugerSnapshot.child("cardID").getValue(int.class) == cardID) { //her indsættes det tal man vil lede efter under en brugers cardID
@@ -76,6 +77,10 @@ public class Card {
 
     public ArrayList<User> getUsersInCard() {
         return usersInCard;
+    }
+
+    public ArrayList<String> getUserNamesAsArray() {
+        return userNamesInCard;
     }
 
     public String getUserNamesInCard() {

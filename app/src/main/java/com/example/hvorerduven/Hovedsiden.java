@@ -30,9 +30,7 @@ public class Hovedsiden extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Button buttonInsert;
-    private Button buttonRemove;
     private EditText editTextInsert;
-    private EditText editTextRemove;
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -118,7 +116,6 @@ public class Hovedsiden extends AppCompatActivity {
     public void changeItem(int position, String text) {
         mCardList.get(position).changeText1(text); //skifter navnet på overskriften
         mAdapter.notifyItemChanged(position);
-
     }
 
     public void lavCardList() { // skal ændres så den opretter kort der eksisterer i databasen
@@ -153,10 +150,7 @@ public class Hovedsiden extends AppCompatActivity {
 
     public void setButtons() {
         buttonInsert = findViewById(R.id.button_insert);
-        buttonRemove = findViewById(R.id.button_remove);
         editTextInsert = findViewById(R.id.edittext_insert);
-        editTextRemove = findViewById(R.id.edittext_remove);
-
         buttonInsert.setOnClickListener(new View.OnClickListener() { //når du klikker på indsæt knappen....
             @Override
             public void onClick(View view) {
@@ -165,14 +159,5 @@ public class Hovedsiden extends AppCompatActivity {
 
             }
         });
-
-        buttonRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int position = Integer.parseInt(editTextRemove.getText().toString());
-                removeItem(position);
-            }
-        });
     }
-
 }

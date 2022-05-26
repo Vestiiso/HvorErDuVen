@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--dette dokument specificere hvordan vores cardlayput skal se ud og hvordan vores cards skal se ud -->
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardViewID"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/teal_700"
     android:padding="50dp"
     app:cardBackgroundColor="#B1FDE7"
-
     app:cardCornerRadius="20dp"
-
     app:contentPadding="10dp"
     android:layout_marginBottom="6dp"
 

@@ -1,5 +1,6 @@
 package com.example.hvorerduven;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -48,6 +50,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
             public TextView mTextview1;
             public TextView mTextview2;
             public ImageView mDeleteImage;
+            public CardView mCardView;
+            public LokalBruger denneBruger = LokalBruger.getInstance();
 
             public CardViewholder(@NonNull View itemView, final OnItemClickListener listener) {
                 super(itemView);
@@ -56,6 +60,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
                 mTextview1 = itemView.findViewById(R.id.textView);
                 mTextview2 = itemView.findViewById(R.id.textView2);
                 mDeleteImage = itemView.findViewById(R.id.image_delete);
+                mCardView = itemView.findViewById(R.id.cardViewID);
 
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,9 +109,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
     public void onBindViewHolder(@NonNull CardViewholder holder, int position) { //giver vores values til ExampleViewholder, fra den position der er givet ved 'position'
         Card currentCard = mCardList.get(position); //det item der er ved 'position' i arraylisten
 
-
         holder.mTextview1.setText(currentCard.getCardName());
         holder.mTextview2.setText(currentCard.getUserNamesInCard());
+
+
+        for (String brugernavn :  currentCard.getUserNamesAsArray()) { //her skal du gøre et kort blåt, hvis lokalbrugers navn står på det
+            if (brugernavn.equals("Nickolai") ) {
+                holder.mCardView.setCardBackgroundColor(Color.rgb(185, 151, 252)); //gør et kort lilla
+            }
+        }
+
 
     }
 
