@@ -24,15 +24,15 @@ import java.util.ArrayList;
 // https://www.youtube.com/watch?v=HMjI7cLsyfw
 //fuld playliste: https://www.youtube.com/playlist?list=PLrnPJCHvNZuBtTYUuc5Pyo4V7xZ2HNtf4
 
-
-
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder> {
+
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference cardRef = database.getReference("Card");
 
     private ArrayList<Card> mCardList;
     private OnItemClickListener mListener;
+    LokalBruger denneBruger = LokalBruger.getInstance();
 
     //lyt efter om man klipper på et af kortene
     public interface OnItemClickListener {
@@ -51,12 +51,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
             public TextView mTextview2;
             public ImageView mDeleteImage;
             public CardView mCardView;
-            public LokalBruger denneBruger = LokalBruger.getInstance();
 
             public CardViewholder(@NonNull View itemView, final OnItemClickListener listener) {
                 super(itemView);
                 //indsæt data i vores felter f.eks. tekstfelter i vores kort
-                //mImageView = itemView.findViewById(R.id.imageView);
+
+
                 mTextview1 = itemView.findViewById(R.id.textView);
                 mTextview2 = itemView.findViewById(R.id.textView2);
                 mDeleteImage = itemView.findViewById(R.id.image_delete);
@@ -114,7 +114,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
 
 
         for (String brugernavn :  currentCard.getUserNamesAsArray()) { //her skal du gøre et kort blåt, hvis lokalbrugers navn står på det
-            if (brugernavn.equals("Nickolai") ) {
+            if (brugernavn.equals(denneBruger.getLokalNavn()) ) {
                 holder.mCardView.setCardBackgroundColor(Color.rgb(185, 151, 252)); //gør et kort lilla
             }
         }

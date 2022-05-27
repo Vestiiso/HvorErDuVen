@@ -3,6 +3,8 @@ package com.example.hvorerduven;
 //denne class er en singleton
 public class LokalBruger extends User{
 
+    private static LokalBruger lokalBruger;
+
     private String brugernavn = "Nickolai";
     private String password;
     private Boolean erLoggetInd;
@@ -10,7 +12,6 @@ public class LokalBruger extends User{
     private String roomID;
     private Room currentRoom = new Room();
 
-    private static LokalBruger lokalBruger;
 
     private LokalBruger() {
 
@@ -23,6 +24,13 @@ public class LokalBruger extends User{
         }
         return lokalBruger;
 
+    }
+
+    public String getLokalNavn () {
+        if (lokalBruger == null) {
+            lokalBruger = new LokalBruger();
+        }
+        return lokalBruger.brugernavn;
     }
 
 }

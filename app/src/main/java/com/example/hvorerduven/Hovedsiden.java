@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,10 +32,14 @@ public class Hovedsiden extends AppCompatActivity {
 
     private Button buttonInsert;
     private EditText editTextInsert;
+    public CardView mCardView;
 
+
+    LokalBruger denneBruger = LokalBruger.getInstance();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference cardRef = database.getReference("Card");
+    DatabaseReference brugerRef = database.getReference("Bruger");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +69,37 @@ public class Hovedsiden extends AppCompatActivity {
             }
         });
 
+        //opdater vores adapter hvis der er ændringer under Card i databasen
+        cardRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                mCardView = findViewById(R.id.cardViewID);
+
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //opdater vores adapter hvis der er ændringer under Bruger i databasen
+        brugerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         //Sørg for at alle cards bliver opdateret, når der bliver oprettet nye brugere
         final DatabaseReference brugerRef = database.getReference("Bruger");
         brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
@@ -91,7 +127,7 @@ public class Hovedsiden extends AppCompatActivity {
     public void insertItem(String cardName) {
         Card nytKort = new Card(cardName, nytCardID);
         addCardToDB(nytKort);
-        mCardList.add(0, nytKort );
+        mCardList.add(mCardList.size(), nytKort );
         mAdapter.notifyItemInserted(0);
 
     }
@@ -113,6 +149,7 @@ public class Hovedsiden extends AppCompatActivity {
         mAdapter.notifyItemRemoved(position);
     }
 
+    //hvad sker der når man trykker på et kort...
     public void changeItem(int position, String text) {
         mCardList.get(position).changeText1(text); //skifter navnet på overskriften
         mAdapter.notifyItemChanged(position);
@@ -139,6 +176,12 @@ public class Hovedsiden extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 changeItem(position, "Clicked");
+
+                DatabaseReference denneBrugerRef = database.getReference("Bruger/"+denneBruger.getLokalNavn()+"/cardID");
+                denneBrugerRef.setValue(mCardList.get(position).getCardID());
+                mAdapter.notifyDataSetChanged();
+
+
             }
 
             @Override

@@ -44,7 +44,10 @@ public class Card {
                     }
                     if (brugerSnapshot.child("cardID").getValue(int.class) == cardID) { //her indsættes det tal man vil lede efter under en brugers cardID
                         String bruger = brugerSnapshot.getKey();
-                        userNamesInCard.add(bruger);
+
+                        if (!userNamesInCard.contains(bruger)) {
+                            userNamesInCard.add(bruger);
+                        }
                     }
                 }
             }
