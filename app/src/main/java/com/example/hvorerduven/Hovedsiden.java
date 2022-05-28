@@ -1,10 +1,12 @@
 package com.example.hvorerduven;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,7 +33,7 @@ public class Hovedsiden extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private CardAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
+    private ImageButton launchSettings;
     private Button buttonInsert;
     private EditText editTextInsert;
     public CardView mCardView;
@@ -49,10 +51,18 @@ public class Hovedsiden extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hovedsiden);
+        launchSettings = (ImageButton) findViewById(R.id.settingsButton);
 
         lavCardList();
         buildRecyclerView();
         setButtons(); //indsætter vores knapper
+
+        launchSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openSettings();
+            }
+        });
 
         //find det højeste cardID i databasen, og gør dette korts ID 1 højere
         final DatabaseReference cardRef = database.getReference("Card");
@@ -225,5 +235,10 @@ public class Hovedsiden extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void openSettings() {
+        Intent SettingsIntent = new Intent(this, Settings.class);
+        startActivity(SettingsIntent);
     }
 }

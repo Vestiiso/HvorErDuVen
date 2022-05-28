@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Hovedsiden"
+    android:background= "#B1FDE7"
     >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:background="@color/hovedside"
         android:padding="10dp"
-        android:scrollbars="vertical"
-        android:layout_marginBottom="100dp"
-        />
+        android:scrollbars="vertical" />
 
     <Button
         android:id="@+id/button_insert"
@@ -25,17 +26,44 @@
         android:layout_marginStart="0dp"
         android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/edittext_insert"
-        android:text="Indsæt" />
+        android:text="Opret nyt kort" />
 
     <EditText
         android:id="@+id/edittext_insert"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="93dp"
         android:layout_below="@+id/recyclerView"
         android:layout_alignParentStart="true"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="-100dp"
+        android:layout_marginTop="-43dp"
+        android:hint="Kortnavn..."
         android:inputType="text" />
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#00FFFFFF"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        app:srcCompat="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="100dp"
+        android:text="Camp Navn"
+
+        android:textAlignment="center"
+        android:textColor="@color/start_color"
+        android:textSize="20sp"
+
+        android:textStyle="bold" />
 
 </RelativeLayout>
 
