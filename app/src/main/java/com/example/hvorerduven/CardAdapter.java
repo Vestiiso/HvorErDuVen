@@ -29,6 +29,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference cardRef = database.getReference("Card");
+    DatabaseReference brugerRef = database.getReference("Bruger");
 
     private ArrayList<Card> mCardList;
     private OnItemClickListener mListener;
@@ -62,6 +63,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
                 mDeleteImage = itemView.findViewById(R.id.image_delete);
                 mCardView = itemView.findViewById(R.id.cardViewID);
 
+                //hvad sker der når man trykker på et kort
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -75,6 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
                     }
                 });
 
+                //hvad sker der når man trykker på sletikonet
                 mDeleteImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -87,8 +90,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
                         }
                     }
                 });
-
-
             }
         }
 
@@ -112,13 +113,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
         holder.mTextview1.setText(currentCard.getCardName());
         holder.mTextview2.setText(currentCard.getUserNamesInCard());
 
-
         for (String brugernavn :  currentCard.getUserNamesAsArray()) { //her skal du gøre et kort blåt, hvis lokalbrugers navn står på det
             if (brugernavn.equals(denneBruger.getLokalNavn()) ) {
                 holder.mCardView.setCardBackgroundColor(Color.rgb(185, 151, 252)); //gør et kort lilla
             }
         }
 
+        //prøv at gøre så den fjerner lilla farvning igen
 
     }
 

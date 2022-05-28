@@ -1,9 +1,11 @@
 package com.example.hvorerduven;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,8 @@ public class Hovedsiden extends AppCompatActivity {
     private Button buttonInsert;
     private EditText editTextInsert;
     public CardView mCardView;
+
+    public TextView mTextview2;
 
 
     LokalBruger denneBruger = LokalBruger.getInstance();
@@ -149,12 +153,6 @@ public class Hovedsiden extends AppCompatActivity {
         mAdapter.notifyItemRemoved(position);
     }
 
-    //hvad sker der når man trykker på et kort...
-    public void changeItem(int position, String text) {
-        mCardList.get(position).changeText1(text); //skifter navnet på overskriften
-        mAdapter.notifyItemChanged(position);
-    }
-
     public void lavCardList() { // skal ændres så den opretter kort der eksisterer i databasen
         mCardList = new ArrayList<>();
         mCardList.add(new Card("Camp området", 1));
@@ -175,11 +173,36 @@ public class Hovedsiden extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() { //aktiverer når man klikker på et kort
             @Override
             public void onItemClick(int position) {
-                changeItem(position, "Clicked");
+                mTextview2 = findViewById(R.id.textView2);
 
+                //ændrer den indloggede brugers cardID i databasen til at være cardID'et for det kort der er klikket på
                 DatabaseReference denneBrugerRef = database.getReference("Bruger/"+denneBruger.getLokalNavn()+"/cardID");
                 denneBrugerRef.setValue(mCardList.get(position).getCardID());
+
                 mAdapter.notifyDataSetChanged();
+
+                for (Card kort : mCardList) {
+                    mTextview2.setText(kort.getUserNamesAsArray().toString());
+
+                    if (!kort.getUserNamesAsArray().contains(denneBruger.getLokalNavn())) {
+                        mCardView.setCardBackgroundColor(Color.rgb(177, 253, 231));
+                        System.out.println(kort.getCardName() + " indeholder ikke navnet: " + denneBruger.getLokalNavn());
+                    }
+                }
+
+                mAdapter.notifyDataSetChanged();
+
+                mCardView = findViewById(R.id.cardViewID);
+
+
+                /*for (Card kort : mCardList) {
+                    if (!kort.getUserNamesAsArray().contains(denneBruger.getLokalNavn())) {
+                        mCardView.setCardBackgroundColor(Color.rgb(177, 253, 231));
+                        System.out.println(kort.getCardName() + " indeholder ikke navnet: " + denneBruger.getLokalNavn());
+                    }
+                }
+
+                 */
 
 
             }
@@ -191,7 +214,7 @@ public class Hovedsiden extends AppCompatActivity {
         });
     }
 
-    public void setButtons() {
+    public void setButtons() { //tilføjer vores buttons
         buttonInsert = findViewById(R.id.button_insert);
         editTextInsert = findViewById(R.id.edittext_insert);
         buttonInsert.setOnClickListener(new View.OnClickListener() { //når du klikker på indsæt knappen....

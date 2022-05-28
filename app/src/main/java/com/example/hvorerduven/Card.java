@@ -57,9 +57,11 @@ public class Card {
         });
     }
 
-    //skift kortets overskrift
-    public void changeText1(String text) { //den her skal modificeres fra guiden, så den ikke ændrer teksten
-        cardName = text;
+    //slet alle navne fra kortet
+    public void sletBrugernavnFraUserNamesInCard(String navn) {
+        if (usersInCard.contains(navn)) {
+            usersInCard.remove(navn);
+        }
     }
 
     public int getCardID() {
@@ -87,7 +89,40 @@ public class Card {
     }
 
     public String getUserNamesInCard() {
-        //System.out.println(userNamesInCard.toString());
+
+        final DatabaseReference brugerRef = database.getReference("Bruger");
+        brugerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == null){
+
+                        break;
+                    }
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == cardID) { //her indsættes det tal man vil lede efter under en brugers cardID
+                        String bruger = brugerSnapshot.getKey();
+
+                        if (!userNamesInCard.contains(bruger)) {
+                            userNamesInCard.add(bruger);
+                        }
+                    }
+
+                    if (brugerSnapshot.child("cardID").getValue(int.class) != cardID) { //her indsættes det tal man vil lede efter under en brugers cardID
+                        String bruger = brugerSnapshot.getKey();
+
+                        if (userNamesInCard.contains(bruger)) {
+                            userNamesInCard.remove(bruger);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+
         return userNamesInCard.toString();
     }
 
