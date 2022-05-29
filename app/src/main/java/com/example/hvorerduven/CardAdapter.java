@@ -112,16 +112,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewholder
         holder.mTextview1.setText(currentCard.getCardName());
         holder.mTextview2.setText(currentCard.getUserNamesInCard());
 
-        /*for (String brugernavn :  currentCard.getUserNamesAsArray()) { //her skal du gøre et kort blåt, hvis lokalbrugers navn står på det
-            if (brugernavn.equals(denneBruger.getLokalNavn()) ) {
-                holder.mCardView.setCardBackgroundColor(Color.rgb(185, 151, 252)); //gør et kort lilla
-            }
-        }
-
-         */
-
-        //prøv at gøre så den fjerner lilla farvning igen
-
     }
 
     @Override

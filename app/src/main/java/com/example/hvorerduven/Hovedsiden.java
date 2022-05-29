@@ -205,15 +205,6 @@ public class Hovedsiden extends AppCompatActivity {
                 mCardView = findViewById(R.id.cardViewID);
 
 
-                /*for (Card kort : mCardList) {
-                    if (!kort.getUserNamesAsArray().contains(denneBruger.getLokalNavn())) {
-                        mCardView.setCardBackgroundColor(Color.rgb(177, 253, 231));
-                        System.out.println(kort.getCardName() + " indeholder ikke navnet: " + denneBruger.getLokalNavn());
-                    }
-                }
-
-                 */
-
 
             }
 
