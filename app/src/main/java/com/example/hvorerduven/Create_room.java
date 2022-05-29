@@ -23,7 +23,8 @@ public class Create_room extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Create_room.this, MainActivity.class));
+                finish();
+                startActivity(new Intent(Create_room.this, LoginScreen.class));
             }
         });
 
