@@ -7,7 +7,6 @@ public class LokalBruger extends User{
 
     private String brugernavn = "Nickolai";
     private String password;
-    private Boolean erLoggetInd;
     private String cardID;
     private String roomID;
     private Room currentRoom = new Room();

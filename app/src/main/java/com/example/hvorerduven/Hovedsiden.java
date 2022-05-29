@@ -210,7 +210,10 @@ public class Hovedsiden extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(int position) {
-                removeItem(position);
+                removeItem(position); //fjerner kortet lokalt
+
+                brugerRef.child(String.valueOf(mCardList.get(position).getCardID())); //finder det child der hedder det samme som cardID for det kort der bliver klikket på
+
             }
         });
     }

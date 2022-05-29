@@ -37,16 +37,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/username"
-        android:layout_marginTop="10dp"
-        android:hint="Password"
-        android:layout_marginRight="60dp"
         android:layout_marginLeft="60dp"
-        android:textColorHint="#FFF"
-        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/edt_background"
         android:ellipsize="start"
         android:gravity="center"
-        android:background="@drawable/edt_background"
-        />
+        android:hint="Password"
+        android:textColorHint="#FFF"
+        android:textStyle="bold" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginbutton"

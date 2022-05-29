@@ -1,15 +1,16 @@
 package com.example.hvorerduven;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +22,10 @@ public class LoginScreen extends AppCompatActivity {
 
     private Button opretBruger;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
+    String username = "kristoffer";
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference kodeRef;
+
 
 
 
@@ -34,9 +39,33 @@ public class LoginScreen extends AppCompatActivity {
 
         MaterialButton loginbutton = (MaterialButton) findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                openLogin();
+
+                final DatabaseReference brugerRef = database.getReference("Bruger");
+                brugerRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        System.out.println("findesBrugeren burde levere: " + snapshot.hasChild(getIndtastetUsername()));
+
+                        if (snapshot.hasChild(getIndtastetUsername())
+                                && getIndtastetPassword().equals(snapshot.child(getIndtastetUsername()).child("password").getValue())) {
+                            openLogin();
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
         });
 
@@ -49,7 +78,7 @@ public class LoginScreen extends AppCompatActivity {
         });
         // Write a message to the database
 
-        String username = "kristoffer";
+
         int pass = 12345;
         int roomID = 001;
         String roomName = "camp";
@@ -110,13 +139,15 @@ public class LoginScreen extends AppCompatActivity {
 
 
 
-    /* private void checkIfUserExists() {
-        DatabaseReference user = FirebaseDatabase.getInstance().getReference("Bruger/");
+    private void checkIfUserExists() {
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference("Bruger");
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     username = (String) dataSnapshot.child("Bruger").getValue();
+                    System.out.println(dataSnapshot.child("Bruger").getValue());
+
 
 
 
@@ -129,7 +160,7 @@ public class LoginScreen extends AppCompatActivity {
             }
         });
     }
-     */
+
 
     public void openLogin() {
         Intent LoginIntent = new Intent(this, Hovedsiden.class);
@@ -141,6 +172,20 @@ public class LoginScreen extends AppCompatActivity {
         startActivity(OpretBrugerIntent);
     }
 
+    public String getIndtastetUsername () {
+        TextView input = findViewById(R.id.username);
+        String inputUsername = String.valueOf(input.getText());
+        //System.out.println("getindtast... modtager: " + String.valueOf(input.getText()));
 
+        return inputUsername;
+    }
+
+    public String getIndtastetPassword() {
+        TextView input = findViewById(R.id.password);
+        String inputPassword = String.valueOf(input.getText());
+
+        return inputPassword;
+
+    }
 
 }
