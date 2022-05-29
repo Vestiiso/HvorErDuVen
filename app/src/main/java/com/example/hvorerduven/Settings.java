@@ -34,7 +34,7 @@ public class Settings extends AppCompatActivity {
         Security.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.opentext.co.uk/about/copyright-information/site-privacy"));
+                Intent browserIntent=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.datatilsynet.dk/hvad-siger-reglerne/lovgivning"));
                 startActivity(browserIntent);
             }
         });
