@@ -7,9 +7,6 @@ public class User {
     private String cardID;
     private String roomID;
 
-    private Room currentRoom = new Room();
-    //private Card currentCard;
-
     public User(){
 
     }
@@ -51,11 +48,4 @@ public class User {
         this.password = password;
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
-    }
 }
