@@ -189,8 +189,6 @@ public class Hovedsiden extends AppCompatActivity {
                 DatabaseReference denneBrugerRef = database.getReference("Bruger/"+denneBruger.getLokalNavn()+"/cardID");
                 denneBrugerRef.setValue(mCardList.get(position).getCardID());
 
-                mAdapter.notifyDataSetChanged();
-
                 for (Card kort : mCardList) {
                     mTextview2.setText(kort.getUserNamesAsArray().toString());
 
@@ -199,21 +197,19 @@ public class Hovedsiden extends AppCompatActivity {
                         System.out.println(kort.getCardName() + " indeholder ikke navnet: " + denneBruger.getLokalNavn());
                     }
                 }
-
                 mAdapter.notifyDataSetChanged();
-
-                mCardView = findViewById(R.id.cardViewID);
-
-
-
             }
 
             @Override
             public void onDeleteClick(int position) {
+
+                int cardKey = mCardList.get(position).getCardID();
+
+                //System.out.println("originalt cardID: " + mCardList.get(position).getCardID());
+                //System.out.println("efter at trække 1 fra: " + cardKey);
+                //brugerRef.child(String.valueOf(mCardList.get(position).getCardID())).setValue(null); //finder det child der hedder det samme som cardID for det kort der bliver klikket på
+                cardRef.child(String.valueOf(cardKey)).setValue(null); //finder det child der hedder det samme som cardID for det kort der bliver klikket på
                 removeItem(position); //fjerner kortet lokalt
-
-                brugerRef.child(String.valueOf(mCardList.get(position).getCardID())); //finder det child der hedder det samme som cardID for det kort der bliver klikket på
-
             }
         });
     }
