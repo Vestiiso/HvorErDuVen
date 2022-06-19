@@ -5,10 +5,11 @@ public class LokalBruger extends User{
 
     private static LokalBruger lokalBruger;
 
-    private String brugernavn = "Nickolai";
+    private String brugernavn = "Default";
     private String cardID;
     private String roomID;
     private Room currentRoom = new Room();
+    private boolean isTheUserLoggedIn = false;
 
 
     private LokalBruger() {
@@ -50,4 +51,7 @@ public class LokalBruger extends User{
         return lokalBruger.brugernavn;
     }
 
+    public void setIsTheUserLoggedIn(boolean isTheUserLoggedIn) {
+        lokalBruger.isTheUserLoggedIn = isTheUserLoggedIn;
+    }
 }

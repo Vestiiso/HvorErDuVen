@@ -46,6 +46,7 @@ public class OpretBruger extends AppCompatActivity {
                         addBruger(bruger);
 
                         LokalBruger.getInstance().setBrugernavn(bruger.getBrugernavn());
+                        LokalBruger.getInstance().setIsTheUserLoggedIn(true);
 
                         openHovedsiden();
                     }
