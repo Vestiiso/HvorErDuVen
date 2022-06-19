@@ -114,7 +114,7 @@ public class Hovedsiden extends AppCompatActivity {
         });
 
 
-        //Sørg for at alle cards bliver opdateret, når der bliver oprettet nye brugere//
+        //Sørg for at alle cards bliver opdateret, når der bliver oprettet nye brugere
         final DatabaseReference brugerRef = database.getReference("Bruger");
         brugerRef.orderByChild("brugernavn").addValueEventListener(new ValueEventListener() {
             @Override

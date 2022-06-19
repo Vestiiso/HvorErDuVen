@@ -40,7 +40,7 @@ public class LoginScreen extends AppCompatActivity {
         MaterialButton loginbutton = (MaterialButton) findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
 
-            @Override //tjek om brugeren findes i databasen og om det indtastet password er korrekt (når man trykker på login knappen//
+            @Override //tjek om brugeren findes i databasen og om det indtastet password er korrekt (når man trykker på login knappen
             public void onClick(View view) {
 
                 final DatabaseReference brugerRef = database.getReference("Bruger");

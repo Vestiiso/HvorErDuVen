@@ -100,7 +100,7 @@ public class Card {
 
                         break;
                     }
-                    if (brugerSnapshot.child("cardID").getValue(int.class) == cardID) { //her indsættes det tal man vil lede efter under en brugers cardID//
+                    if (brugerSnapshot.child("cardID").getValue(int.class) == cardID) { //her indsættes det tal man vil lede efter under en brugers cardID
                         String bruger = brugerSnapshot.getKey();
 
                         if (!userNamesInCard.contains(bruger)) {
