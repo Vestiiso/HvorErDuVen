@@ -12,6 +12,7 @@ public class LokalBruger extends User{
     private boolean isTheUserLoggedIn = false;
 
 
+
     private LokalBruger() {
 
     }
@@ -52,6 +53,18 @@ public class LokalBruger extends User{
     }
 
     public void setIsTheUserLoggedIn(boolean isTheUserLoggedIn) {
+        if (lokalBruger == null) {
+            lokalBruger = new LokalBruger();
+        }
         lokalBruger.isTheUserLoggedIn = isTheUserLoggedIn;
     }
+
+    public boolean getIsTheUserLoggedIn() {
+        if (lokalBruger == null) {
+            lokalBruger = new LokalBruger();
+        }
+
+        return isTheUserLoggedIn;
+    }
 }
+

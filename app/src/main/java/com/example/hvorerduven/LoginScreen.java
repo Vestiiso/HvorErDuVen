@@ -1,6 +1,8 @@
 package com.example.hvorerduven;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,10 +28,7 @@ public class LoginScreen extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference kodeRef;
     Boolean kørIkkeIgen = false;
-
-
-
-
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +36,10 @@ public class LoginScreen extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
 
         opretBruger = (Button) findViewById(R.id.opretbutton);
+
+        if (getErLoggetIndIPreferences() == true) {
+            openHovedsiden();
+        }
 
         MaterialButton loginbutton = (MaterialButton) findViewById(R.id.loginbutton);
         loginbutton.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +60,8 @@ public class LoginScreen extends AppCompatActivity {
                                 LokalBruger.getInstance().setBrugernavn(getIndtastetUsername()); //sætter vores lokalbruger til at være = den indloggede
                                 System.out.println("lokalbrugers navn er nu: " + LokalBruger.getInstance().getBrugernavn());
                                 kørIkkeIgen = true;
-                                LokalBruger.getInstance().setIsTheUserLoggedIn(true);
+                                LokalBruger.getInstance().setIsTheUserLoggedIn(true); //fortæller vores Lokalbruger at den er logget ind
+                                setErLoggetIndIPreferences(); //gemmer Lokalbrugers istheuserloggedin i preferences, så appen husker det når den bliver lukket
                                 openHovedsiden(); //åbner aktiviteten hovedsiden
                             }
 
@@ -144,8 +148,6 @@ public class LoginScreen extends AppCompatActivity {
         });
     }
 
-
-
     private void checkIfUserExists() {
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("Bruger");
         user.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -193,6 +195,22 @@ public class LoginScreen extends AppCompatActivity {
 
         return inputPassword;
 
+    }
+
+    public void setErLoggetIndIPreferences(){
+        sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+
+        editor.putBoolean("logget ind", LokalBruger.getInstance().getIsTheUserLoggedIn());
+        editor.commit();
+
+    }
+
+    public boolean getErLoggetIndIPreferences() {
+        sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        boolean erLoggetInd = sp.getBoolean("logget ind", Boolean.parseBoolean(""));
+
+        return erLoggetInd;
     }
 
 }
