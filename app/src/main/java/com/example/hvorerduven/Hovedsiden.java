@@ -1,7 +1,6 @@
 package com.example.hvorerduven;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -189,6 +188,7 @@ public class Hovedsiden extends AppCompatActivity {
                 DatabaseReference denneBrugerRef = database.getReference("Bruger/"+denneBruger.getLokalNavn()+"/cardID");
                 denneBrugerRef.setValue(mCardList.get(position).getCardID());
 
+                /* vi prøvede at få den til at ændre baggrundsfarven, men det virkede ikke
                 for (Card kort : mCardList) {
                     mTextview2.setText(kort.getUserNamesAsArray().toString());
 
@@ -197,6 +197,8 @@ public class Hovedsiden extends AppCompatActivity {
                         System.out.println(kort.getCardName() + " indeholder ikke navnet: " + denneBruger.getLokalNavn());
                     }
                 }
+
+                 */
                 mAdapter.notifyDataSetChanged();
             }
 

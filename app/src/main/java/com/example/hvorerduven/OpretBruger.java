@@ -1,8 +1,8 @@
 package com.example.hvorerduven;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +24,7 @@ public class OpretBruger extends AppCompatActivity {
     DatabaseReference userRef = database.getReference("Bruger");
 
 
-    private Button brugernavn;
+    private Button opretBrugerBtn;
     EditText editBruger;
     EditText editPassword;
 
@@ -33,18 +33,21 @@ public class OpretBruger extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_opret_bruger);
             MaterialButton opretNyBruger = (MaterialButton) findViewById(R.id.opretNyBruger);
-            brugernavn = (Button)findViewById(R.id.opretNyBruger);
+            opretBrugerBtn = (Button)findViewById(R.id.opretNyBruger);
             editBruger   = (EditText)findViewById(R.id.username);
             editPassword   = (EditText)findViewById(R.id.password);
 
-        brugernavn.setOnClickListener(
+        opretBrugerBtn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View view) {
-                        Log.v("TEST123", editBruger.getText().toString());
                         User bruger = new User();
                         bruger.setBrugernavn(editBruger.getText().toString());
                         bruger.setPassword(editPassword.getText().toString());
                         addBruger(bruger);
+
+                        LokalBruger.getInstance().setBrugernavn(bruger.getBrugernavn());
+
+                        openHovedsiden();
                     }
 /*
 
@@ -85,6 +88,12 @@ public class OpretBruger extends AppCompatActivity {
                     }
                 });
     }
+
+    public void openHovedsiden() {
+        Intent hovedsidenIntent = new Intent(this, Hovedsiden.class);
+        startActivity(hovedsidenIntent);
+    }
+
 }
 
 

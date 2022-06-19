@@ -25,6 +25,7 @@ public class LoginScreen extends AppCompatActivity {
     String username = "kristoffer";
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference kodeRef;
+    Boolean kørIkkeIgen = false;
 
 
 
@@ -48,11 +49,16 @@ public class LoginScreen extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        System.out.println("findesBrugeren burde levere: " + snapshot.hasChild(getIndtastetUsername()));
 
                         if (snapshot.hasChild(getIndtastetUsername())
-                                && getIndtastetPassword().equals(snapshot.child(getIndtastetUsername()).child("password").getValue())) {
-                            openLogin();
+                                && getIndtastetPassword().equals(snapshot.child(getIndtastetUsername()).child("password").getValue())) { //tjekker om en bruger med det navn og password eksisterer
+
+                            if (kørIkkeIgen == false) {
+                                LokalBruger.getInstance().setBrugernavn(getIndtastetUsername()); //sætter vores lokalbruger til at være = den indloggede
+                                System.out.println("lokalbrugers navn er nu: " + LokalBruger.getInstance().getBrugernavn());
+                                kørIkkeIgen = true;
+                                openHovedsiden(); //åbner aktiviteten hovedsiden
+                            }
 
                         }
 
@@ -162,7 +168,7 @@ public class LoginScreen extends AppCompatActivity {
     }
 
 
-    public void openLogin() {
+    public void openHovedsiden() {
         Intent LoginIntent = new Intent(this, Hovedsiden.class);
         startActivity(LoginIntent);
     }
