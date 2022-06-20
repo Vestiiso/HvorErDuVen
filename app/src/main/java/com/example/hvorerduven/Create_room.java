@@ -14,19 +14,19 @@ public class Create_room extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createroom);
-        back = (Button) findViewById(R.id.back);
+        //back = (Button) findViewById(R.id.back);
         Create_room = (Button) findViewById(R.id.Create_room);
         Join_room = (Button) findViewById(R.id.Join_room);
 
-
-
-        back.setOnClickListener(new View.OnClickListener() {
+        /*back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(Create_room.this, LoginScreen.class));
             }
         });
+
+         */
 
         Join_room.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -41,6 +41,11 @@ public class Create_room extends AppCompatActivity {
                 startActivity(new Intent(Create_room.this,Hovedsiden.class));
              }
         });
+
+    }
+
+    @Override
+    public void onBackPressed () {
 
     }
 }

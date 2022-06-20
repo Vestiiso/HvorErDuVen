@@ -162,12 +162,27 @@ public class Hovedsiden extends AppCompatActivity {
         mAdapter.notifyItemRemoved(position);
     }
 
+    //opretter kort der skal vises ved opstart
     public void lavCardList() { // skal ændres så den opretter kort der eksisterer i databasen
         mCardList = new ArrayList<>();
+
         mCardList.add(new Card("Camp området", 1));
         mCardList.add(new Card("main stage", 2));
         mCardList.add(new Card("baren",3));
-        
+
+        final DatabaseReference cardRef = database.getReference("Card");
+        cardRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     public void buildRecyclerView() {
@@ -219,6 +234,8 @@ public class Hovedsiden extends AppCompatActivity {
     public void setButtons() { //tilføjer vores buttons
         buttonInsert = findViewById(R.id.button_insert);
         editTextInsert = findViewById(R.id.edittext_insert);
+        TextView campNavn = findViewById(R.id.textView3);
+
         buttonInsert.setOnClickListener(new View.OnClickListener() { //når du klikker på indsæt knappen....
             @Override
             public void onClick(View view) {
@@ -227,10 +244,23 @@ public class Hovedsiden extends AppCompatActivity {
 
             }
         });
+
+        campNavn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent SMSIntent = new Intent(Hovedsiden.this, SendSMS.class);
+                startActivity(SMSIntent);
+            }
+        });
     }
 
     public void openSettings() {
         Intent SettingsIntent = new Intent(this, Settings.class);
         startActivity(SettingsIntent);
+    }
+
+    @Override
+    public void onBackPressed () {
+
     }
 }

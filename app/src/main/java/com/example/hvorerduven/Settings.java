@@ -21,11 +21,11 @@ public class Settings extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         Logout = (Button) findViewById(R.id.logout);
         Security = (Button) findViewById(R.id.Security);
-        Back = (Button) findViewById(R.id.back);
+        //Back = (Button) findViewById(R.id.back);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            firebaseAuth.signOut();
+                LokalBruger.getInstance().setBrugernavn("default");
             finish();
             startActivity(new Intent(Settings.this, LoginScreen.class));
             }
@@ -39,13 +39,15 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        Back.setOnClickListener(new View.OnClickListener() {
+        /*Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(Settings.this,MainActivity.class));
             }
         });
+
+         */
     }
 
 }

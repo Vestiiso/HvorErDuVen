@@ -55,7 +55,6 @@ public class LoginScreen extends AppCompatActivity {
 
                             if (kørIkkeIgen == false) {
                                 LokalBruger.getInstance().setBrugernavn(getIndtastetUsername()); //sætter vores lokalbruger til at være = den indloggede//
-                                System.out.println("lokalbrugers navn er nu: " + LokalBruger.getInstance().getBrugernavn());
                                 kørIkkeIgen = true;
                                 //openHovedsiden(); //åbner aktiviteten hovedsiden
                                 openCreateRoom();
