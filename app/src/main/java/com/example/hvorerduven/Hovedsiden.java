@@ -147,7 +147,7 @@ public class Hovedsiden extends AppCompatActivity {
 
     public void addCardToDB(Card nytKort) { //fremgangsmåde herfra: https://stackoverflow.com/questions/37031222/firebase-add-new-child-with-specified-name
         Map<String, String> cardData = new HashMap<>();
-        cardData.put("CardName", nytKort.getCardName());
+        cardData.put("cardName", nytKort.getCardName());
         String midlertidigtRoomID = "roomID test";
         cardData.put("roomID", midlertidigtRoomID);
 
