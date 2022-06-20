@@ -9,11 +9,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -170,7 +172,7 @@ public class Hovedsiden extends AppCompatActivity {
         //mCardList.add(new Card("main stage", 2));
         //mCardList.add(new Card("baren",3));
 
-        final DatabaseReference cardRef = database.getReference("Card");
+        /*final DatabaseReference cardRef = database.getReference("Card");
         cardRef.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -181,6 +183,40 @@ public class Hovedsiden extends AppCompatActivity {
                     //System.out.println(cardSnapshot.child("cardName").getValue());
                 }
                 mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+         */
+
+        final DatabaseReference cardRef = database.getReference("Card");
+        cardRef.orderByKey().addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hvert card
+                    //mCardList.add(new Card(cardSnapshot.child("cardName").getValue().toString(), Integer.parseInt(cardSnapshot.getKey())));
+                    System.out.println(dataSnapshot.getKey());
+                    System.out.println(cardSnapshot.getChildren());
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
