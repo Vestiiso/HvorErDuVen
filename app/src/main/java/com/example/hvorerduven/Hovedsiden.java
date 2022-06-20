@@ -68,7 +68,7 @@ public class Hovedsiden extends AppCompatActivity {
         cardRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hver card
                     if (cardSnapshot.getKey() != null) {
                         nytCardID = Integer.parseInt(cardSnapshot.getKey())+1;
                     } else {
@@ -166,15 +166,21 @@ public class Hovedsiden extends AppCompatActivity {
     public void lavCardList() { // skal ændres så den opretter kort der eksisterer i databasen
         mCardList = new ArrayList<>();
 
-        mCardList.add(new Card("Camp området", 1));
-        mCardList.add(new Card("main stage", 2));
-        mCardList.add(new Card("baren",3));
+        //mCardList.add(new Card("Camp området", 1));
+        //mCardList.add(new Card("main stage", 2));
+        //mCardList.add(new Card("baren",3));
 
         final DatabaseReference cardRef = database.getReference("Card");
-        cardRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+        cardRef.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hvert card
+                    mCardList.add(new Card(cardSnapshot.child("cardName").getValue().toString(), Integer.parseInt(cardSnapshot.getKey())));
+                    //ystem.out.println(cardSnapshot);
+                    //System.out.println(Integer.parseInt(cardSnapshot.getKey()));
+                    //System.out.println(cardSnapshot.child("cardName").getValue());
+                }
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
