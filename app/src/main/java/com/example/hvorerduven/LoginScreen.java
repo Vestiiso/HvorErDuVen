@@ -57,7 +57,8 @@ public class LoginScreen extends AppCompatActivity {
                                 LokalBruger.getInstance().setBrugernavn(getIndtastetUsername()); //sætter vores lokalbruger til at være = den indloggede//
                                 System.out.println("lokalbrugers navn er nu: " + LokalBruger.getInstance().getBrugernavn());
                                 kørIkkeIgen = true;
-                                openHovedsiden(); //åbner aktiviteten hovedsiden
+                                //openHovedsiden(); //åbner aktiviteten hovedsiden
+                                openCreateRoom();
                             }
 
                         }
@@ -145,7 +146,7 @@ public class LoginScreen extends AppCompatActivity {
 
 
 
-    private void checkIfUserExists() {
+    /*private void checkIfUserExists() {
         DatabaseReference user = FirebaseDatabase.getInstance().getReference("Bruger");
         user.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -153,9 +154,6 @@ public class LoginScreen extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     username = (String) dataSnapshot.child("Bruger").getValue();
                     System.out.println(dataSnapshot.child("Bruger").getValue());
-
-
-
 
                 }
             }
@@ -167,10 +165,17 @@ public class LoginScreen extends AppCompatActivity {
         });
     }
 
+     */
+
 
     public void openHovedsiden() {
         Intent LoginIntent = new Intent(this, Hovedsiden.class);
         startActivity(LoginIntent);
+    }
+
+    public void openCreateRoom() {
+        Intent cRoomIntent = new Intent(this, Create_room.class);
+        startActivity(cRoomIntent);
     }
 
     public void openOpretBruger() {
