@@ -31,7 +31,7 @@ public class Card {
         this.cardName = cardName;
         this.cardID = cardID;
 
-        //tilføj bruger med et hvis cardID til userNamesInCard, der bruges til at vise brugere i kortet//
+        /*//tilføj bruger med et hvis cardID til userNamesInCard, der bruges til at vise brugere i kortet//
         final DatabaseReference brugerRef = database.getReference("Bruger");
         brugerRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,6 +55,8 @@ public class Card {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+         */
     }
 
     //slet alle navne fra kortet
@@ -136,6 +138,10 @@ public class Card {
 
     public void setBelongsToRoom(Room belongsToRoom) {
         this.belongsToRoom = belongsToRoom;
+    }
+
+    public void addUserNameToUserNamesInCard(String nameToAdd){
+        userNamesInCard.add(nameToAdd);
     }
 
 

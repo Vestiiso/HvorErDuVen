@@ -207,6 +207,8 @@ public class Hovedsiden extends AppCompatActivity {
                 }
                 tjekOmFørste = false;
                 mAdapter.notifyDataSetChanged();
+
+                //updateNavnePåKort();
             }
 
             @Override
@@ -335,5 +337,29 @@ public class Hovedsiden extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void updateNavnePåKort() {
+        //tilføj bruger med et hvis cardID til userNamesInCard, der bruges til at vise brugere i kortet//
+        final DatabaseReference brugerRef = database.getReference("Bruger");
+        brugerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot brugerSnapshot : dataSnapshot.getChildren()) { //for hver bruger
+
+                    String brugerNavn = brugerSnapshot.getKey();
+                    Integer cardID = (Integer) brugerSnapshot.child("cardID").getValue();
+
+                    for (Card card : mCardList) {
+                        if (card.cardID == cardID) {
+                            card.addUserNameToUserNamesInCard(brugerNavn);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
