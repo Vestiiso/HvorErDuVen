@@ -137,4 +137,6 @@ public class Card {
     public void setBelongsToRoom(Room belongsToRoom) {
         this.belongsToRoom = belongsToRoom;
     }
+
+
 }

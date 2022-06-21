@@ -38,6 +38,7 @@ public class Hovedsiden extends AppCompatActivity {
     private Button buttonInsert;
     private EditText editTextInsert;
     public CardView mCardView;
+    public boolean tjekOmFørste = true;
 
     public TextView mTextview2;
 
@@ -197,10 +198,14 @@ public class Hovedsiden extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
                 for (DataSnapshot cardSnapshot : dataSnapshot.getChildren()) { //for hvert card
-                    //mCardList.add(new Card(cardSnapshot.child("cardName").getValue().toString(), Integer.parseInt(cardSnapshot.getKey())));
-                    System.out.println(dataSnapshot.getKey());
-                    System.out.println(cardSnapshot.getChildren());
+
+                    if (findesIDimCardList(Integer.parseInt(dataSnapshot.getKey())) == false) {
+                        mCardList.add(new Card(dataSnapshot.child("cardName").getValue().toString(), Integer.parseInt(dataSnapshot.getKey())));
+                        System.out.println(dataSnapshot.getKey());
+                        System.out.println(dataSnapshot.child("cardName").getValue());
+                    }
                 }
+                tjekOmFørste = false;
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -304,5 +309,14 @@ public class Hovedsiden extends AppCompatActivity {
     @Override
     public void onBackPressed () {
 
+    }
+
+    public boolean findesIDimCardList(int IDderSkalFindes){
+        for (Card card : mCardList) {
+            if (IDderSkalFindes == card.getCardID()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
