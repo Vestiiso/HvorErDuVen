@@ -215,8 +215,16 @@ public class Hovedsiden extends AppCompatActivity {
             }
 
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    sletCardMedID(Integer.parseInt(dataSnapshot.getKey()));
+                    System.out.println(dataSnapshot.getKey());
+                    mAdapter.notifyDataSetChanged();
 
+                }
+                catch (Exception e) {
+                    System.out.println(e);
+                }
             }
 
             @Override
@@ -318,5 +326,14 @@ public class Hovedsiden extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    public void sletCardMedID(int IDpåCardDerSkalSlettes) {
+        for (Card card : mCardList) {
+            if (IDpåCardDerSkalSlettes == card.getCardID()) {
+                mCardList.remove(card);
+            }
+
+        }
     }
 }
